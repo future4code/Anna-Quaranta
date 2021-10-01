@@ -1,0 +1,11 @@
+Comidas Favoritas:
+1 - Frutos do mar
+2 - Bolo de Aipim/Frutas
+3 - Massa (Arroz, macarrão, pizza, esfirra..)
+4 - Churrasco
+5 - Sorvete/Açai
+6 - Batata Frita
+7 - Moqueca de peixe
+8 - Kibe
+9 - Frango/Carne/Peixe à parmegiana
+10 - Tabule
