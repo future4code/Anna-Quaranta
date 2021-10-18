@@ -103,12 +103,22 @@ function retornaNPrimeirosPares(n) {
     return nPrimeirosNumeros
 }
 
-console.log(retornaNPrimeirosPares(3))
+// console.log(retornaNPrimeirosPares(3))
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-
+    let tipoDoTriangulo
+    if (ladoA === ladoB && ladoB === ladoC){
+        tipoDoTriangulo = "Equilátero"
+    }else if (ladoA !== ladoB && ladoB !== ladoC && ladoC !== ladoA){
+        tipoDoTriangulo = "Escaleno"
+    }else{
+        tipoDoTriangulo = "Isósceles"
+    }
+    return tipoDoTriangulo
 }
+
+console.log(classificaTriangulo(5,5,5))
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
