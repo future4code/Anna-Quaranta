@@ -4,29 +4,51 @@
 
 
 // EXERCÍCIO 01
-function retornaTamanhoArray(array) {
-   return array.length
-}
+// function retornaTamanhoArray(array) {
+//    return array.length
+// }
 
 // EXERCÍCIO 02
-function retornaArrayInvertido(array) {
-    let meuArray = []
-    for(let i = array.length - 1; i > -1; i--){
-      meuArray.push(array[i])
-    }
-    array = []
-    array = meuArray
-    return array
-}
+// function retornaArrayInvertido(array) {
+//     let meuArray = []
+//     for(let i = array.length - 1; i > -1; i--){
+//       meuArray.push(array[i])
+//     }
+//     array = []
+//     array = meuArray
+//     return array
+// }
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-  
+    // let myArray = []
+    
+    // for(let i = 0; i < array.length; i++){
+    //   for (let j = 0; i < array.length; j++){
+    //     if(array[i] < array[j]){
+    //       myArray.push(array[i])
+    //     }
+    //   }
+    // }
+    
+    // console.log(myArray)
+
+    return array.sort()
 }
+// let array = [3,2,1,4,7]
+// console.log(retornaArrayOrdenado(array))
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+  let myArray = []
+  for(let i = 0; i < array.length; i++){
+      if (array[i] % 2 === 0){
+          myArray.push(array[i])
+      }
+  }
+  array = []
+  array = myArray
+  return array
 }
 
 // EXERCÍCIO 05
