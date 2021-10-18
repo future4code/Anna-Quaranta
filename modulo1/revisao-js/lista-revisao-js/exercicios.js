@@ -118,11 +118,17 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
     return tipoDoTriangulo
 }
 
-console.log(classificaTriangulo(5,5,5))
-
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-  
+    array.sort()
+    console.log(array)
+    if (array[0] > array[array.length-2]){
+        array.splice(array.length,0,array[0])
+        array.shift()
+    }
+
+    return [array[array.length-2], array[1]]
+
 }
 
 // EXERCÍCIO 11
