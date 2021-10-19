@@ -21,22 +21,9 @@ function retornaArrayInvertido(array) {
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-    // let myArray = []
-    
-    // for(let i = 0; i < array.length; i++){
-    //   for (let j = 0; i < array.length; j++){
-    //     if(array[i] < array[j]){
-    //       myArray.push(array[i])
-    //     }
-    //   }
-    // }
-    
-    // console.log(myArray)
-
-    return array.sort()
+    return array.sort((a, b) => a - b )
 }
-// let array = [3,2,1,4,7]
-// console.log(retornaArrayOrdenado(array))
+
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
@@ -162,6 +149,7 @@ function retornaPessoasNaoAutorizadas(pessoas) {
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
+    
 
 }
 
