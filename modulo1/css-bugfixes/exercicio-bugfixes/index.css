@@ -138,6 +138,17 @@ td button {
     color: black;
 }
 
+table button:active{
+    color: white;
+}
+#back-button a:active{
+    color: white;
+}
+
+table button:hover{
+    background-color: #f8ce13
+}
+
 #back-button:hover {
-    background-color: #635a3d
+    background-color: #3b3624
 }
