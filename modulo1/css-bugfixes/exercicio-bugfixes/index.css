@@ -111,7 +111,7 @@ div:last-child {
 table {
     width: 60%;
     text-align: center;
-    /* border: 1px solid black; */
+    margin: auto
 }
 
 td img{
