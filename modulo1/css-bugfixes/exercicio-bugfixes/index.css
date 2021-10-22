@@ -64,7 +64,10 @@ div img {
 .icone {
     height: 15px;
 }
-
+ol{
+    margin: 0 auto;
+    width: 300px;
+}
 
 /** 
   *
@@ -95,6 +98,7 @@ div img {
     padding: 100px 0;
     font-size: 60px;
 }
+
 
 
 /**
