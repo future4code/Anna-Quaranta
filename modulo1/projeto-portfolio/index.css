@@ -14,7 +14,6 @@ button{
     text-align: right;
     position: absolute;
     right: 50px;
-    border: 5px solid white;
 }
 
 /* corpo da página */
@@ -38,15 +37,14 @@ h1{
 }
 
 .titulo button{
-    width: 100px;
-    height: 50px;
-    margin: 50px 42px;
+    width: 115px;
+    height: 60px;
+    margin: 50px 40px;
     position: relative;
     text-align: center;
-    left: 15px;
+    left: 5px;
     border: 5px solid white;
-
-    
+    border-radius: 30px;
 }
 
 /*  Rodapé da página */
