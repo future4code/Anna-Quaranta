@@ -1,50 +1,88 @@
-body{
-    margin: 10 px;
-    background-color: #918085 ;
+
+*{
+    margin: 0;
+    box-sizing: content-box;
 }
-/*  Cabeçalho */
-#cabecalho{
-    border: white 5px inset;
-    background-color: #a6808c;
-    margin: 10px;
-    font-family: 'Cinzel';
+/* Cabeçalho */
+
+header{
+    border: 1px solid black;
+    background-image: url('https://thumbs.dreamstime.com/b/abstraia-o-fundo-textura-da-folha-de-rose-gold-113323202.jpg');
+    text-align: left;
+    height: 180px;
+    position: sticky;
+    top: 0;
+    width: auto;
 }
 
-#titulo{
-    text-align: center;
-    font-size: 70px;
-    color: gray;
-    text-shadow: black 1px 1px 1px;
-    margin: 0px;
+#menu-superior{
+    background-color: white;
+    text-align: right;
+    width: 100%;
 }
 
-#subtitulo{
-    text-align: center;
-    color: white;
-    text-shadow: black 1px 1px 1px;
-    margin:0px
+#menu-superior button{
 
+    margin: 3px 3px;
+    
 }
 
-h1{
-    background-color: rgb(255, 255, 255, 0.397);
+#titulo {
+    border: 2px groove whitesmoke;
+    margin: 15px;
+    padding: 3px;
+    background-color: #d3b1bca6 ;
 }
- /* Fim do cabeçalho */
- /* Menu */
+
+#titulo h1, h2{
+    font-family: 'Cabin', sans-serif;
+}
+
+header img{
+    width: 85px;
+    position:absolute
+}
+
+header h1{
+
+    display: inline;
+    font-size: 50px;
+}
+
+
 #menu{
+    width: auto;
+    height: 23px;
+    background-color: rgb(179, 154, 170);
+    text-align: left;
+    padding: 3px;
+}
+
+#menu button{
+    margin: 2px 5px
+}
+
+button:hover{
+    background-color: rgba(255, 0, 0, 0.192);
+    color: white;
+
+}
+button:active{
+    background-color: white;
+    color:rgba(255, 0, 0, 0.192);
+}
+/* Fim do cabeçalho */
+footer{
+    background-image: url('https://thumbs.dreamstime.com/b/abstraia-o-fundo-textura-da-folha-de-rose-gold-113323202.jpg');
     margin-top: 10px;
-    background-color: rgba(255, 255, 255, 0.219);
-
+    border-top: 2px solid red;
+    position: relative;
+    bottom: 0;
+    
 }
 
-button{
-    margin: 5px;
-    padding: 10px;
+footer img{
+    width: 20px;
 }
 
-a:hover{
-    color: red;
-}
-img{
-    width: 50px;
-}
+    /* background-color: #a6808c; */
