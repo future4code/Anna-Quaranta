@@ -1,0 +1,60 @@
+body{
+    margin: 10 px;
+    background-color: #918085 ;
+}
+/*  Cabeçalho */
+#cabecalho{
+    border: white 5px inset;
+    background-color: #a6808c;
+    margin: 10px;
+    font-family: 'Cinzel';
+}
+
+#titulo{
+    text-align: center;
+    font-size: 70px;
+    color: gray;
+    text-shadow: black 1px 1px 1px;
+    margin: 0px;
+}
+
+#subtitulo{
+    text-align: center;
+    color: white;
+    text-shadow: black 1px 1px 1px;
+    margin:0px
+
+}
+ /* Fim do cabeçalho */
+ /* Menu */
+#menu{
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.219);
+
+}
+
+button{
+    margin: 5px;
+    padding: 10px;
+}
+
+a:hover{
+    color: red;
+}
+/* Controle de Estoque */
+h1{
+    background-color: rgb(255, 255, 255, 0.397);
+}
+/* Tabela */
+img {
+    width: 200px;
+}
+
+table, td, th{
+    border: 1px white solid;
+    text-align: center;
+}
+
+table{
+    margin: auto;
+}
