@@ -9,7 +9,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border: 1px black solid;
+    /* border: 1px black solid; */
     height: 50px;
     background-color: rgb(245, 126, 82);
 }
@@ -22,8 +22,9 @@ input{
 /* CORPO */
 
 .container{
-    margin: 5px;
-    border: 2px greenyellow solid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* border: 2px greenyellow solid; */
     display: grid;
     justify-content: center;
     gap: 10px;
@@ -45,12 +46,15 @@ input{
 }
 /* FOOTER */
 footer{
-    border: 3px red solid;
+    /* border: 3px red solid; */
     height: 50px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: grey;
     color: white;
     font-size: 30px;
+    position: fixed;
+    bottom: 0;
 }
