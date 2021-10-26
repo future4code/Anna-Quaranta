@@ -6,31 +6,80 @@ body {
     font-size: 10px;
     color: white;
 }
+/* #main-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat();
+} */
+
+#top-container{
+    display: grid;
+    grid-template-columns: 1fr 60%;
+    height: 40px;
+    font-size: 20px;
+}
 
 .green-background {
     background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .yellow-background {
     background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .pink-background {
     background-color: fuchsia;
+    height: 350px;
 }
 
+#middle-container{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 600px 400px 400px;
+    grid-template-rows: 90px 90px;
+    font-size: 20px;
+}
 .blue-background {
     background-color: blue;
+    height: 180px;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .red-background {
     background-color: red;
+    height: 90px;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .lightgreen-background {
     background-color: lightgreen;
+    height: 90px;
+    grid-row: 2/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .purple-background {
     background-color: purple;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
 }
