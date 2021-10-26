@@ -15,9 +15,16 @@
 
 input{
     margin-right: 50px;
+    height: 25px;
 
 }
 
+button{
+    width: 100px;
+    height: 25px;
+
+
+}
 /* MAIN */
 
 
