@@ -84,29 +84,78 @@ button{
 
 /* CORPO */
 
-/* MAIN */
-
 .titulo-e-video{
-    margin: px;
+    margin: 2vh;
     gap: 10px;
 }
 
 h2{
-    align-self: flex-start;
     font-size: 2em;
-    margin-left: 0px;
+    margin-left: 2vw;
 }
 
 video{
     width: 90vw;
 }
 
+/* FOOTER */
+footer{
+    position: fixed;
+    bottom: 0;
+
+}
+}
+
+/* @media all and (orientation: landscape) and (min-device-width : 320px) and (max-device-width : 480px ){
+    video{
+        width: 95vw;
+    }
+} */
+
+@media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+    /* tablets */
+
+    
+    /* CABEÇALHO*/
+.cabecalho{
+    height: 7vh;
+    font-size: 25px;
+}
+
+input{
+    width: 30vw;
+    height: 5vw;
+    margin-right: 10px;
+}
+
+button{
+   width: 15vw; 
+   height: 5vw;
+}
+
+
+/* CORPO */
+
+.titulo-e-video{
+    margin: 2vh;
+    gap: 10px;
+}
+
+h2{
+    font-size: 3em;
+    margin-left: 2vw;
+}
+
+video{
+    width: 90vw;
+}
 
 /* FOOTER */
 footer{
     position: fixed;
     bottom: 0;
 
+}
 }
 
 
