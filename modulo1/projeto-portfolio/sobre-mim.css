@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+} 
+
+header div{
+    height: 80px;
+    background-color: rgb(243, 237, 233);
+    padding: 20px;
+    width: 100%;
+}
+/* div #botao-home{
+    position: relative;
+    text-align: center;
+    width: 70px;
+    margin-left: 20px;
+} */
+
+#botao-contato{
+    text-align: right;
+    position: absolute;
+    right: 50px;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+}
+
+div button{
+    position: relative;
+    text-align: center;
+    width: 100px;
+    margin-left: 10px;
+    height: 40px;
+
+
+}
+
+/* CORPO DA PÁGINA */
+body{
+    background-image: linear-gradient(to right,rgba(203,150,150), rgba(214,171,171),white);
+}
+
+
+.titulo{
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+h1{
+    text-align: center;
+    font-size: 100px;
+    font-family: Cinzel;
+    border: 1px black double;
+}
+
+/* QUEM EU SOU */
+img{
+    position: relative;
+    top: 30px;
+    left: 40px;
+
+    height: 300px;
+    /* border-radius: 200px; */
+    border: 8px whitesmoke ridge;
+    display: inline;
+}
+
+.sobremim{
+    background-color: rgba(192, 192, 192,0.4);
+    height: 350px;
+    border-left: 20px whitesmoke ridge;
+    border-right: 20px rgb(207, 207, 207) ridge;
+}
+
+.sobremim h2{
+    display: inline;
+    position: relative;
+    display: flex;
+    justify-content: right;
+    /* left: 1px; */
+    text-align: right;
+    bottom: 270px;
+    font-size: 80px;
+    margin-right: 20px;
+    text-decoration: underline;
+}
+
+.sobremim p{
+    position: relative;
+    bottom: 250px;
+    margin-left: 50%;
+    text-align: center;
+    border: 1px black solid;
+}
+
+/* HABILIDADES */
+
+article{
+    margin-top: 30px;
+}
+
+#habilidades{
+    background-color: rgba(192, 192, 192,0.4);
+    height: 350px;
+    border-left: 20px whitesmoke ridge;
+    border-right: 20px rgb(207, 207, 207) ridge;
+}
+
+#habilidades h2{
+    position: relative;
+    text-align: right;
+    top: 30px;
+    font-size: 80px;
+    margin-right: 20px;
+    text-decoration: underline;
+
+}
+
+#habilidades p{
+    position: relative;
+    display: flex;
+    top: 70px;
+    margin-left: 40%;
+}
+
+
+
+/* RODAPÉ DA PÁGINA */
+footer{
+    height: 40px;
+    width: 100%;
+    background-color: rgb(243, 237, 233);
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+}
+
+
+/* ------------------------------------------------------------------------- */

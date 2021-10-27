@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+} 
+
+/* CABEÇALHO */
+header div{
+    height: 80px;
+    background-color: rgb(243, 237, 233);
+    padding: 20px;
+    width: 100%;
+}
+/* div #botao-home{
+    position: relative;
+    text-align: center;
+    width: 70px;
+    margin-left: 20px;
+} */
+
+#botao-contato{
+    text-align: right;
+    position: absolute;
+    right: 50px;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+}
+
+div button{
+    position: relative;
+    text-align: center;
+    width: 100px;
+    margin-left: 10px;
+    height: 40px;
+
+
+}
+
+/* CORPO DA PÁGINA */
+
+body{
+    background-image: linear-gradient(to right,rgba(203,150,150), rgba(214,171,171),white);
+}
+
+
+.titulo{
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+h1{
+    text-align: center;
+    font-size: 100px;
+    font-family: Cinzel;
+    border: 1px black double;
+}
+
+/* FORMULARIO */
+
+label{
+    display: block;
+    margin: 30px;
+}
+
+
+
+/* HABILIDADES */
+
+article{
+    margin-top: 30px;
+}
+
+#formulario{
+    background-color: rgba(192, 192, 192,0.4);
+    height: 500px;
+    border-left: 20px whitesmoke ridge;
+    border-right: 20px rgb(207, 207, 207) ridge;
+}
+
+h2{
+    position: relative;
+    text-align: center;
+    top: 30px;
+    font-size: 70px;
+    margin-right: 20px;
+    text-decoration: underline;
+
+}
+
+#formulario p{
+    margin-top: 30px
+}
+
+#botao-enviar{
+    width: 100px;
+    height: 40px;
+    padding: 10px;
+}
+
+form{
+    text-align: center;
+}
+
+
+textarea{
+    width: 500px;
+    height: 100px;
+    resize: none;
+}
+
+/* OUTROS CONTATOS */
+
+article{
+    margin-top: 30px;
+}
+
+#contatos{
+    background-color: rgba(192, 192, 192,0.4);
+    height: 250px;
+    border-left: 20px whitesmoke ridge;
+    border-right: 20px rgb(207, 207, 207) ridge;
+}
+
+/* #contatos p{
+    position: relative;
+    display: flex;
+    top: 70px;
+    margin-left: 40%;
+} */
+
+#contatos img{
+    text-align: center;
+}
+
+#contatos p{
+    display: inline;
+    font-size: 15px;
+}
+
+/* RODAPÉ */
+
+footer{
+    height: 40px;
+    width: 100%;
+    background-color: rgb(243, 237, 233);
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+}
