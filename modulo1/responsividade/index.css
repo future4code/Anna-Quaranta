@@ -11,7 +11,13 @@
     padding: 10px;
     /* border: 1px black solid; */
     height: 50px;
-    background-color: rgb(245, 126, 82);
+    background-color: red;
+    color: white;
+}
+
+h1{
+    border: 1px solid white;
+    padding: 5px;
 }
 
 input{
@@ -89,13 +95,13 @@ input{
 
 @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
     .container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        place-items: center;
+ 
     }
 
     .video-card{
         display: flex;
-        width: vw;
     }
 }

@@ -10,7 +10,13 @@
     align-items: center;
     padding: 10px;
     height: 50px;
-    background-color: rgb(245, 126, 82);
+    background-color: red;
+    color: white;
+}
+
+h1{
+    border: solid 1px white;
+    padding: 10px;
 }
 
 input{
@@ -106,11 +112,11 @@ footer{
 }
 }
 
-/* @media all and (orientation: landscape) and (min-device-width : 320px) and (max-device-width : 480px ){
+@media all and (orientation: landscape) and (min-device-width : 320px) and (max-device-width : 480px ){
     video{
         width: 95vw;
     }
-} */
+}
 
 @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
     /* tablets */
