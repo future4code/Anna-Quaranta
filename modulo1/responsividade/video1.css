@@ -62,3 +62,52 @@ footer{
     color: white;
 
 }
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    /* celulares */
+
+    /* CABEÇALHO*/
+.cabecalho{
+    height: 3vh;
+    font-size: 12px;
+}
+
+input{
+    width: 30vw;
+    margin-right: 10px;
+}
+
+button{
+   width: 13vw; 
+}
+
+
+/* CORPO */
+
+/* MAIN */
+
+.titulo-e-video{
+    margin: px;
+    gap: 10px;
+}
+
+h2{
+    align-self: flex-start;
+    font-size: 2em;
+    margin-left: 0px;
+}
+
+video{
+    width: 90vw;
+}
+
+
+/* FOOTER */
+footer{
+    position: fixed;
+    bottom: 0;
+
+}
+
+
+}
