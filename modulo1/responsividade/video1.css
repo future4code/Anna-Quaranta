@@ -1,0 +1,64 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* CABEÇALHO*/
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 50px;
+    background-color: rgb(245, 126, 82);
+}
+
+input{
+    margin-right: 50px;
+    height: 25px;
+
+}
+
+button{
+    width: 100px;
+    height: 25px;
+
+
+}
+/* MAIN */
+
+
+
+.titulo-e-video{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    margin: 30px;
+    gap: 10px;
+}
+
+h2{
+    align-self: flex-start;
+    font-size: 30px;
+    margin-left: 200px;
+}
+
+video{
+    width: 70%;
+}
+
+/* FOOTER */
+footer{
+    /* border: 3px red solid; */
+    height: 50px;
+    width: 100%;
+    font-size: 30px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    color: white;
+
+}
