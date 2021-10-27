@@ -61,5 +61,28 @@ footer{
 
 @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
     /* celulares */
-    
+
+    /* CABEÇALHO*/
+.cabecalho{
+    height: 3vh;
+    font-size: 12px;
+}
+
+input{
+    width: 40vw;
+    margin-right: 10px;
+
+}
+
+
+/* CORPO */
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12vh;
+}
+
+
 }
