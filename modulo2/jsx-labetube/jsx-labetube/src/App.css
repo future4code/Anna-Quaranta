@@ -12,12 +12,18 @@ body {
 }
 
 header {
-  background-color: orange;
+  background-color: red;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
   height: 10%;
+  color: white;
+}
+
+header h1{
+  border: 1px white solid;
+  padding: 3px;
 }
 
 main {
@@ -98,11 +104,12 @@ main {
 
 footer {
   height: 10%;
-  background-color: grey;
+  background-color: red;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
+  color: white;
 }
 
 .box-pagina-principal > img {
