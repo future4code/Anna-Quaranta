@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
-import CardGrande from './components/CardGrande/CardGrande';
-import ImagemButton from './components/ImagemButton/ImagemButton';
-import CardPequeno from "./components/CardPequeno/CardPequeno";
+import CardGrande from './components/CardGrande';
+import ImagemButton from './components/ImagemButton';
+import CardPequeno from "./components/CardPequeno";
+import CardMedio from "./components/CardMedio"
 import styled from 'styled-components';
 
 const AppEstilizado = styled.div`
@@ -22,6 +22,7 @@ const TituloSectionContainer = styled.h3`
   justify-content: center;
   margin-bottom: 20px;
 `
+
 function App() {
   return (
     <AppEstilizado>
@@ -56,6 +57,14 @@ function App() {
           nome="NASA"
           descricao="Sendo o alienigena."
         />
+      </SectionContainerEstilizada>
+
+      <SectionContainerEstilizada>
+
+        <TituloSectionContainer>Habilidades</TituloSectionContainer>
+
+        <CardMedio habilidade1="Determinada" habilidade2="Analítica" habilidade3="Sociável"/>
+        <CardMedio habilidade1="Persistente" habilidade2="Atenciosa" habilidade3="Detalhista"/>
       </SectionContainerEstilizada>
 
       <SectionContainerEstilizada>
