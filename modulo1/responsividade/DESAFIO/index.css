@@ -1,0 +1,61 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    border: 1px solid black;
+}
+
+#first-block {
+    background-color: red;
+    height: 10vh;
+}
+
+.grid1{
+    display: grid;
+    grid-template-columns: repeat(3, 25vw);
+    grid-template-rows: repeat(2, 25vh);
+    justify-content: space-around;
+    padding: 25px;
+    gap: 25px
+}
+
+.blue-block, .yellow-block, .green-block{
+    display: grid;
+    place-items: center;
+}
+.blue-block {
+    background-color: blue;
+}
+
+.yellow-block {
+    background-color: yellow;
+}
+
+.green-block {
+    background-color: green;
+}
+
+.grid2{
+    display: grid;
+    grid-template-columns: repeat(2,45vw);
+    grid-template-rows: 50vh;
+    justify-content: space-around;
+}
+.black-block {
+    background-color: black;
+    color: white;
+}
+
+.grid3{
+    display: grid;
+    grid-template-columns: repeat(3,25vw);
+    grid-template-rows: 20vh;
+    place-items: center;
+}
+.white-block {
+    background-color: white;
+}
