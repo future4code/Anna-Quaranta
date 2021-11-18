@@ -8,10 +8,13 @@ const CardPlaylist = styled.div`
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
-    width: 150px;
-    height: 50px;
-    margin: 10px;
+    height: 20px;
+    margin: 5px;
     padding: 10px;
+`
+
+const DivPai = styled.div`
+    margin: 0px;
 `
 
 //------------------INICIO DA SINXTAXE DA CLASSE ---------------------------
@@ -80,7 +83,7 @@ export default class ListaDePlaylists extends React.Component {
         const listaNomesPlaylists = this.state.playlists.map((playlist) => {
             return (
                 <CardPlaylist>
-                    <p>{playlist.name}</p>
+                    {playlist.name}
                     <button onClick={() => this.deletarPlaylist(playlist.id)}>X</button>
                 </CardPlaylist>
 
@@ -88,9 +91,9 @@ export default class ListaDePlaylists extends React.Component {
         })
 
         return (
-            <div>
+            <DivPai>
                 {listaNomesPlaylists}
-            </div>
+            </DivPai>
         )
     }
 }

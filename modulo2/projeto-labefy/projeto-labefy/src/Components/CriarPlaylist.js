@@ -1,5 +1,17 @@
 import React from "react";
 import axios from "axios"
+import styled from "styled-components"
+
+const DivPai = styled.div`
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    input{
+        width: 150px;
+    }
+`
+
 
 export default class CriarPlaylist extends React.Component {
     state = {
@@ -10,7 +22,7 @@ export default class CriarPlaylist extends React.Component {
         console.log(this.state.nomeDaPlaylist)
         this.setState({nomeDaPlaylist: event.target.value})
     }
-
+    
     createPlaylist = async () => {
         try {
             const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists"
@@ -22,6 +34,7 @@ export default class CriarPlaylist extends React.Component {
                     Authorization: "anna-quaranta-carver"
                 }
             })
+            
 
             alert("Playlist criada!")
             this.setState({nomeDaPlaylist:""})
@@ -35,10 +48,10 @@ export default class CriarPlaylist extends React.Component {
 
     render() {
         return (
-            <div>
+            <DivPai>
                 <input placeholder="Digite o nome da playlist" value={this.state.nomeDaPlaylist} onChange={this.onChangeInputNome} />
                 <button onClick={this.createPlaylist}>Criar playlist</button>
-            </div>
+            </DivPai>
         )
     }
 }
