@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components"
 import CriarPlaylist from "./Components/CriarPlaylist";
 import ListaDePlaylists from "./Components/ListaDePlaylists";
-import PlaylistAberta from "./Components/PlaylistAberta"
 
 
 //------------STYLED COMPONENTS---------------------------------------------------
