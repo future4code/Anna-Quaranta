@@ -52,7 +52,6 @@ export default class App extends React.Component {
           <ContainerEsquerdo>
             <button>Início</button>
             <CriarPlaylist/>
-            <ListaDePlaylists/>
 
           </ContainerEsquerdo>
 
