@@ -4,6 +4,7 @@ import CriarPlaylist from "./Components/CriarPlaylist";
 import { createGlobalStyle } from 'styled-components';
 import axios from 'axios'
 import RenderizarCapaPlaylist from "./Components/RenderizarCapaPlaylist";
+import TelaDeDetalhes from "./Components/TelaDeDetalhes";
 
 
 
@@ -119,7 +120,7 @@ export default class App extends React.Component {
         </ContainerPaiCorpo>
 
         <ContainerFooter>
-
+          <TelaDeDetalhes/>
         </ContainerFooter>
       </DivPai>
     )
