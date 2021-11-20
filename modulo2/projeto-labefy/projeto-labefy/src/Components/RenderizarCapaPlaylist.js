@@ -27,7 +27,8 @@ class RenderizarCapaPlaylist extends React.Component {
 
     state = {
         tela: false,
-        idDaPlaylist: ""
+        idDaPlaylist: "",
+        nomeDaPlaylist: ""
     }
 
     // listaDeIds = this.props.estadoPlaylist.map((playlist) =>{
@@ -56,8 +57,8 @@ class RenderizarCapaPlaylist extends React.Component {
 
     // }
 
-    mudarDeTela = (id) => {
-        this.setState({ tela: true, idDaPlaylist: id})
+    mudarDeTela = (id,nome) => {
+        this.setState({ tela: true, idDaPlaylist: id, nomeDaPlaylist: nome})
         console.log(this.state.tela)
 
     }
@@ -67,7 +68,7 @@ class RenderizarCapaPlaylist extends React.Component {
             return (
                 <CardMusica key={playlist.id}>
                     <img src="https://picsum.photos/190/190" />
-                    <button onClick={() => this.mudarDeTela(playlist.id)}>{playlist.name}</button>
+                    <button onClick={() => this.mudarDeTela(playlist.id, playlist.name)}>{playlist.name}</button>
                 </CardMusica>
 
             )
@@ -79,7 +80,7 @@ class RenderizarCapaPlaylist extends React.Component {
         } else {
             return (
                 <div>
-                    <TelaDeDetalhes tela={this.state.tela} idDaPlaylist={this.state.idDaPlaylist}/>
+                    <TelaDeDetalhes tela={this.state.tela} idDaPlaylist={this.state.idDaPlaylist} nomeDaPlaylist = {this.state.nomeDaPlaylist}/>
                 </div>
 
             )

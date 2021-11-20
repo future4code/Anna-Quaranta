@@ -44,7 +44,7 @@ class TelaDeDetalhes extends React.Component {
         return (
 
             <div>
-
+                <h1>{this.props.nomeDaPlaylist}</h1>
                 {listaDeMusicas}
 
             </div>
