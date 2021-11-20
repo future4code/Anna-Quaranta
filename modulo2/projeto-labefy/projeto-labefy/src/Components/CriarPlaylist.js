@@ -11,10 +11,16 @@ const CardPlaylist = styled.div`
     height: 20px;
     margin: 5px;
     padding: 10px;
+    
+    button{
+      height: 20px;
+    }
+
+    
 `
 
 const DivPai = styled.div`
-    margin: 0px;
+    margin: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,10 +29,11 @@ const DivPai = styled.div`
 const DivCriarPlaylist = styled.div`
     display: flex;
     justify-content: space-around;
-
+    margin-left: 5px;
     height: 30;
     input{
         width: 140px;
+        height: 20px;
         text-overflow: ellipsis;
     }
     button{
@@ -44,8 +51,8 @@ class CriarPlaylist extends React.Component {
     //-------------------------------------------------FUNÇÃO PARA CRIAR PLAYLISTS
 
   onChangeInputNome = (event) => {
-    console.log(this.state.nomeDaPlaylist)
     this.setState({ nomeDaPlaylist: event.target.value })
+    console.log(this.state.nomeDaPlaylist)
   }
 
   createPlaylist = async () => {

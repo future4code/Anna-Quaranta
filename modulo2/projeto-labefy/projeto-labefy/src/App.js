@@ -4,7 +4,6 @@ import CriarPlaylist from "./Components/CriarPlaylist";
 import { createGlobalStyle } from 'styled-components';
 import axios from 'axios'
 import RenderizarCapaPlaylist from "./Components/RenderizarCapaPlaylist";
-import TelaDeDetalhes from "./Components/TelaDeDetalhes";
 
 
 
@@ -42,21 +41,30 @@ const ContainerEsquerdo = styled.nav`
   width: 20%;
   height: 100%;
   overflow-y: auto;
+
+  button{
+    margin: 5px;
+  }
 `
 const ContainerMain = styled.main`
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
   width: 80%;
   height: 100%;
   overflow-y: auto;
-  background: linear-gradient(180deg, rgb(191, 24, 46), rgb(26, 26, 26));
+  background: linear-gradient(-180deg, rgb(0, 13, 255), rgb(0, 0, 0));
+
 `
 
 const ContainerFooter = styled.div`
   border-top: 1px solid white;
   height: 20%; 
   background-color: rgb(26, 26, 26);
+  color: white;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 `
 //-----------------------------------------------------------------------------------
@@ -120,7 +128,7 @@ export default class App extends React.Component {
         </ContainerPaiCorpo>
 
         <ContainerFooter>
-          <TelaDeDetalhes/>
+          Sentimos muito! No momento nosso player está dançando. Volte mais tarde!
         </ContainerFooter>
       </DivPai>
     )
