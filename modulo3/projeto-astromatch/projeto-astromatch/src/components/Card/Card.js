@@ -1,34 +1,65 @@
-import React, { useState } from "react";
-import { DivPai, Header, Main, Footer } from './CardStyled'
+import React, { useState, useEffect } from "react";
+import { DivPai, Header, Main, CardUsuario, DivTexto, Footer, Buttons, Match, Passar } from './CardStyled'
 import axios from "axios";
 
+// ----------------------------- STYLED COMPONENT
 
 const Card = () => {
-    const [usuario, setUsuario] = useState({})
+    const [perfilUsuario, setPerfilUsuario] = useState({})
+    const [match, setMatch] = useState([])
+
+    useEffect(() => {
+        pegarPerfil()
+    }, [])
 
     const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/anna-quaranta"
-    
-    // const pegarUsuarios = async() =>{
-    //     try{
-    //         const response = await axios.get(`${baseUrl}/person`)
-    //         console.log(response.data)
 
-    //     }catch (erro){
-    //         console.log(erro.response.data)
+    const pegarPerfil = async () => {
+        try {
+            const response = await axios.get(`${baseUrl}/person`)
+            // console.log(response.data.profile)
+            setPerfilUsuario(response.data.profile)
+            // console.log(perfilUsuario)
+        } catch (erro) {
+            console.log(erro)
 
-    //     }
-    // }
+        }
+    }
+
+
+    const darMatch = () => {
+        console.log(match)
+        const listaMatchs = [...match, perfilUsuario]
+        setMatch(listaMatchs)
+        console.log(match)
+        pegarPerfil()
+
+    }
 
     return (
         <DivPai>
             <Header>
                 Nome da marca e botão para lista de matchs
             </Header>
+
             <Main>
-                <img src="https://picsum.photos/400/400"/ >
-               {/* {pegarUsuarios()} */}
+
+                <CardUsuario>
+                    <img src={perfilUsuario.photo} />
+                    <DivTexto>
+                        <p>{perfilUsuario.name}, {perfilUsuario.age}</p>
+                        <p key={perfilUsuario.id}>{perfilUsuario.bio}</p>
+                    </DivTexto>
+                </CardUsuario>
+
             </Main>
+
             <Footer>
+                <Buttons>
+                    <Match onClick={() => { darMatch() }}>♥️</Match>
+                    <Passar onClick={() => pegarPerfil()}>X</Passar>
+                </Buttons>
+
             </Footer>
 
         </DivPai>
