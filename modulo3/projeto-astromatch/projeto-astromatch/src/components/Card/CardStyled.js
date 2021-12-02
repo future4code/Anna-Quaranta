@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const DivPai = styled.div`
     background-color: whitesmoke;
-    width: 30%;
+    width: 29%;
     height: 97%;
     border: 1px solid black;
     border-radius: 0.5vw;
@@ -10,26 +10,43 @@ export const DivPai = styled.div`
 `
 //HEADER-----------------------------------------------------
 export const Header = styled.div`
-    background-color: pink;
-    width: 100%;
-    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    height: 9%;
+    padding: 0.5vw;
+    font-size: 2vw;
+    font-weight: bold;
+
+    img{
+        width: 2.5vw;
+        cursor: pointer;
+    }
 `
 
 // MAIN -------------------------------------------------------
 export const Main = styled.div`
-    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 75%;
+    height: 78%;
 `
 export const CardUsuario = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     border: 1px solid white;
-    width: 100%;
-    height: 100%;
-    background: url({props.foto});
+    border-radius: 0.5vw;
+    width: 90%;
+    height: 90%;
+    background-image: url(${props => props.imagem});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 1em black;
+    
 
     img{
         border-radius: 5vw;
@@ -40,6 +57,8 @@ export const CardUsuario = styled.div`
 
 export const DivTexto = styled.div`
     border: 1px solid aliceblue; 
+    color: white;
+    padding: 10px;
 `
 
 //FOOTER---------------------------------------------------------
@@ -48,7 +67,7 @@ export const Footer = styled.div`
     justify-content: center;
     align-items: center;
     background-color: lightcoral;
-    height: 15%;
+    height: 13%;
 
     button{
         border-radius: 50%;

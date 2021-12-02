@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { DivPai, Header, Main, CardUsuario, DivTexto, Footer, Buttons, Match, Passar } from './CardStyled'
+import { DivPai, Header} from './CardStyled'
 import axios from "axios";
+import telamatch from '../../uteis/telamatch.svg'
+import telaprincipal from '../../uteis/telaprincipal.svg'
+import TelaMatches from "../../telas/TelaMatches";
+import TelaPrincipal from"../../telas/TelaPrincipal"
 
 // ----------------------------- STYLED COMPONENT
 
 const Card = () => {
     const [perfilUsuario, setPerfilUsuario] = useState({})
-    const [match, setMatch] = useState([])
+    const [tela, setTela] = useState(true)
 
+    //------------------------FUNÇÕES
     useEffect(() => {
         pegarPerfil()
     }, [])
@@ -17,51 +22,48 @@ const Card = () => {
     const pegarPerfil = async () => {
         try {
             const response = await axios.get(`${baseUrl}/person`)
-            // console.log(response.data.profile)
             setPerfilUsuario(response.data.profile)
-            // console.log(perfilUsuario)
+
         } catch (erro) {
             console.log(erro)
-
         }
     }
 
 
-    const darMatch = () => {
-        console.log(match)
-        const listaMatchs = [...match, perfilUsuario]
-        setMatch(listaMatchs)
-        console.log(match)
-        pegarPerfil()
+    const darMatch = async (id, choice) => {
+        const body = {
+            id: id,
+            choice: choice
+        }
 
+        try {
+            const response = await axios.post(`${baseUrl}/choose-person`, body)
+            pegarPerfil()
+
+        } catch (erro) {
+            console.log(erro.response.data)
+        }
     }
+
+    const trocarTela = () => {
+        switch (tela) {
+            case false:
+                return <TelaMatches baseUrl={baseUrl} />
+            default:
+                return <TelaPrincipal perfilUsuario={perfilUsuario} darMatch={darMatch} />
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------
 
     return (
         <DivPai>
             <Header>
-                Nome da marca e botão para lista de matchs
+                <img src={telaprincipal} onClick={() => setTela(true)} props = {tela}/>
+                <p>Match Perfeito</p>
+                <img src={telamatch} onClick={() => setTela(false)} />
             </Header>
-
-            <Main>
-
-                <CardUsuario>
-                    <img src={perfilUsuario.photo} />
-                    <DivTexto>
-                        <p>{perfilUsuario.name}, {perfilUsuario.age}</p>
-                        <p key={perfilUsuario.id}>{perfilUsuario.bio}</p>
-                    </DivTexto>
-                </CardUsuario>
-
-            </Main>
-
-            <Footer>
-                <Buttons>
-                    <Match onClick={() => { darMatch() }}>♥️</Match>
-                    <Passar onClick={() => pegarPerfil()}>X</Passar>
-                </Buttons>
-
-            </Footer>
-
+            {trocarTela()}
         </DivPai>
     )
 }
