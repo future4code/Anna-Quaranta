@@ -1,4 +1,4 @@
-import { Main, CardUsuario, DivTexto, Footer, Buttons, Match, Passar } from "../components/Card/CardStyled"
+import { Main, CardUsuario, DivTexto, Footer, Buttons, Match, Passar } from "./Styled"
 
 const TelaPrincipal = (props) => {
     return (
@@ -7,7 +7,7 @@ const TelaPrincipal = (props) => {
                 <CardUsuario imagem={props.perfilUsuario.photo}>
                     <DivTexto>
                         <h2>{props.perfilUsuario.name}, {props.perfilUsuario.age}</h2>
-                        <p key={props.perfilUsuario.id}>{props.perfilUsuario.bio}</p>
+                        <h3 key={props.perfilUsuario.id}>{props.perfilUsuario.bio}</h3>
                     </DivTexto>
                 </CardUsuario>
             </Main>
