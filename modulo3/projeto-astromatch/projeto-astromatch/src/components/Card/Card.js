@@ -6,6 +6,7 @@ import telaprincipal from '../../uteis/telaprincipal.svg'
 import TelaMatches from "../../telas/TelaMatches/TelaMatches";
 import TelaPrincipal from"../../telas/TelaPrincipal/TelaPrincipal"
 
+
 // ----------------------------- STYLED COMPONENT
 
 const Card = () => {
@@ -22,11 +23,12 @@ const Card = () => {
     const pegarPerfil = async () => {
         try {
             const response = await axios.get(`${baseUrl}/person`)
-            setPerfilUsuario(response.data.profile)
+
+            setPerfilUsuario(response.data.profile || {})
 
         } catch (erro) {
             alert("Sentimos muito. Aconteceu um erro! Volte mais tarde!")
-            console.log(erro.response.data)
+            console.log(erro.response)
         }
     }
 
@@ -42,7 +44,7 @@ const Card = () => {
             pegarPerfil()
 
         } catch (erro) {
-            console.log(erro.response.data)
+            console.log(erro.response)
             alert("Sentimos muito. Aconteceu um erro! Volte mais tarde!")
         }
     }
@@ -50,7 +52,7 @@ const Card = () => {
     const trocarTela = () => {
         switch (tela) {
             case false:
-                return <TelaMatches baseUrl={baseUrl} />
+                return <TelaMatches pegarPerfil = {pegarPerfil} baseUrl={baseUrl} />
             default:
                 return <TelaPrincipal perfilUsuario={perfilUsuario} darMatch={darMatch} />
         }

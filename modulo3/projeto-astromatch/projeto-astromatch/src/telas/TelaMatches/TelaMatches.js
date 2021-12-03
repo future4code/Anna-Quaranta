@@ -27,11 +27,14 @@ const TelaMatches = (props) => {
 
         try {
             const response = await axios.put(`${props.baseUrl}/clear`)
-            console.log(response.data)
+            alert("Matchs limpados!")
+            setMatch([])
             pegarMatches()
+            props.pegarPerfil()
+            
 
         } catch (erro) {
-            console.log(erro.response.data)
+            console.log(erro.response)
             alert("Sentimos muito. Aconteceu um erro! Volte mais tarde!")
         }
     }

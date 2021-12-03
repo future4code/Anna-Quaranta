@@ -6,15 +6,15 @@ export const DivPai = styled.div`
     justify-content: space-between;
     width: 100%;
     height: 91%;
-    /* background-color: #d4c0bf; */
-    /* color: #3a3030; */
 
 
     button{
-        height: 2vw;
+        height: 3vw;
+        width: 100%;
         background-color: #bc8f8f;
         border: none;
         font-weight: bold;
+
 
         &:hover{
             background-color: #3a3030;
@@ -24,7 +24,7 @@ export const DivPai = styled.div`
 `
 
 export const DivCards = styled.div`
-    padding: 5px;
+    overflow-y: auto;
 `
 export const Card = styled.div`
     display: flex;
@@ -32,6 +32,10 @@ export const Card = styled.div`
     padding: 10px;
     font-size: 1.5vw;
     font-weight: bold;
+
+    &:hover{
+        background-color: grey;
+    }
 `
 
 export const Foto = styled.div`
