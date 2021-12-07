@@ -1,16 +1,14 @@
-import AdminHomePage from "./pages/AdminHomePage"
-import ApplicationFormPage from "./pages/ApplicationFormPage"
-import CreateTripPage from "./pages/CreateTripPage"
-import HomePage from "./pages/HomePage"
-import ListTripsPage from "./pages/ListTripsPage"
-import LoginPage from "./pages/LoginPage"
-import TripDetailsPage from "./pages/TripDetailsPage"
+import React from 'react'
+import { Router } from './route/Router';
+import {GlobalStyle, Container} from './styles/AppStyled'
 
 const App = () => {
- return (
-   <div>
-   </div>
- )
+  return (
+    <Container>
+      <GlobalStyle />
+      <Router/>
+    </Container>
+  )
 }
 
 export default App
