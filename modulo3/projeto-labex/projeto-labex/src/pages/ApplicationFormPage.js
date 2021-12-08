@@ -1,36 +1,141 @@
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { baseUrl } from "../constants/url";
 
 const ApplicationFormPage = (props) => {
-    const history = useHistory
+    const history = useHistory()
+    const [trips, setTrips] = useState([])
+    const [trip, setTrip] = useState("")
+    const [name, setName] = useState("")
+    const [age, setAge] = useState(Number)
+    const [applicationText, setApplicationText] = useState("")
+    const [profession, setProfession] = useState("")
+    const [country, setCountry] = useState("")
+
+
+    useEffect(() => {
+        getTrips()
+    }, [])
+
+    //-----------------------------REQUISIÇÕES
+
+    const getTrips = () => {
+        axios.get(`${baseUrl}/trips`)
+            .then((res) => {
+                setTrips(res.data.trips)
+            })
+            .catch((error) => {
+                alert("Aconteceu um erro. Sentimos muito! Volte mais tarde.")
+                console.log(error.response)
+            })
+    }
+
+    const applyToTrip = async () => {
+        const body = {
+            name: name,
+            age:  age ,
+            applicationText:  applicationText ,
+            profession:  profession ,
+            country:  country 
+        }
+
+        try {
+            const response = await axios.post(`${baseUrl}/trips/${trip}/apply`, body)
+            console.log(response)
+            alert("Aplicação feita. Boa sorte!")
+            setTrip("")
+            setName("")
+            setAge("")
+            setApplicationText("")
+            setProfession("")
+            setCountry("")
+        } catch (error) {
+            alert("Aconteceu um erro. Sentimos muito! Volte mais tarde.")
+            console.log(error.response)
+        }
+
+        console.log("Clicou!")
+
+    }
+
+
+
+    //-------------------ONCHANGES
+
+    const onChange = (e) => {
+        switch (e.target.name) {
+
+            case "trip":
+                console.log(e.target.value)
+                setTrip(e.target.value)
+                break;
+
+            case "name":
+                setName(e.target.value)
+                break
+
+            case "age":
+                setAge(e.target.value)
+                break
+
+            case "applicationText":
+                setApplicationText(e.target.value)
+                break
+
+            case "profession":
+                setProfession(e.target.value)
+                break
+
+            case "country":
+                setCountry(e.target.value)
+                break
+
+            default:
+                alert("Campo não encontrado. Entre em contato conosco!")
+                break;
+        }
+    }
+
+    //-----------------MAPS
+
+    const listTrips = trips.map((trip) => {
+        return (
+            <option value={trip.id} key={trip.id}>{trip.name}</option>
+        )
+    })
+
+    //----------------RETURN
     return (
         <div>
             <h2>Inscreva-se para uma viagem</h2>
 
             <form>
                 <label>
-                    <select>
+                    <select name="trip" value={trip} onChange={onChange}>
                         <option selected>Escolha uma viagem</option>
+                        {listTrips}
                     </select>
                 </label>
 
                 <label>
-                    <input placeholder="Nome" />
+                    <input placeholder="Nome" value={name} onChange={onChange} name="name" />
                 </label>
 
                 <label>
-                    <input placeholder="Idade" />
+                    <input type="number " placeholder="Idade" onChange={onChange} value={age} name="age" />
                 </label>
 
                 <label>
-                    <input placeholder="Texto de Candidatura" />
+                    <input placeholder="Texto de Candidatura" value={applicationText} onChange={onChange} name="applicationText" />
                 </label>
 
                 <label>
-                    <input placeholder="Profissão" />
+                    <input placeholder="Profissão" value={profession} onChange={onChange} name="profession" />
                 </label>
 
                 <label>
-                    <select name="Pais">
+                    <select name="country" value={country} onChange={onChange}>
                         <option selected>Escolha um País</option>
                         <option value="África do Sul">África do Sul</option>
                         <option value="Albânia">Albânia</option>
@@ -209,8 +314,9 @@ const ApplicationFormPage = (props) => {
                     </select>
                 </label>
 
-                <button onClick={() => props.goBack(history)}>Voltar</button>
-                <button>Enviar</button>
+                <button onClick={() => props.goToBack(history)}>Voltar</button>
+
+                <button onClick={applyToTrip}>Enviar</button>
 
             </form>
 

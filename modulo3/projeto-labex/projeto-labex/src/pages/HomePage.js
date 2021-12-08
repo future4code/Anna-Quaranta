@@ -1,6 +1,5 @@
 import {Container} from '../styles/HomePageStyled'
 import {useHistory} from 'react-router-dom'
-import Header from '../components/Header'
 
 const HomePage = () => {
     const history = useHistory()
