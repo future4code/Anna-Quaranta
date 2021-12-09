@@ -67,7 +67,6 @@ const TripDetailsPage = (props) => {
             <p>Data: {detail.date}</p>
             <button onClick={() => props.goToBack(history)}>Voltar</button>
             <h2>Candidatos Pendentes:</h2>
-            {/* {listCandidates > 0? <p>Sem candidaturas pendentes</p> : {listCandidates} } */}
         </div>
     )
 }

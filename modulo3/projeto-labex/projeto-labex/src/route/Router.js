@@ -6,7 +6,8 @@ import ApplicationFormPage from "../pages/ApplicationFormPage"
 import CreateTripPage from "../pages/CreateTripPage"
 import ListTripsPage from "../pages/ListTripsPage"
 import LoginPage from "../pages/LoginPage"
-import TripDetailsPage from "../page/TripDetailsPage"
+import TripDetailsPage from "../pages/TripDetailsPage"
+
 
 export const Router = () => {
 
@@ -47,7 +48,7 @@ export const Router = () => {
                 </Route>
 
                 <Route exact path={"/tripDetailsPage/:id"}>
-                    <TripDetailsPage goTo={goTo} goToBack={goToBack} />
+                    <TripDetailsPage goTo={goTo} goToBack={goToBack}/>
                 </Route>
             </Switch>
         </BrowserRouter>

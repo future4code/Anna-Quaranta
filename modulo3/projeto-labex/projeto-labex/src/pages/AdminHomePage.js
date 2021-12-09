@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useProtectPage } from "../hooks/useProtectPage";
-import axios from "axios";
 import { baseUrl } from "../constants/url";
 import styled from "styled-components";
+import axios from "axios";
 
 const Card = styled.div`
     border: 1px solid black;
