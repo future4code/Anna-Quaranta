@@ -1,18 +1,15 @@
-import {Container} from '../styles/HomePageStyled'
-import {useHistory} from 'react-router-dom'
+import { Container, Card } from '../styles/HomePageStyled'
+import { useHistory } from 'react-router-dom'
 
-const HomePage = () => {
+const HomePage = (props) => {
     const history = useHistory()
-
-    const goToTheListTripsPage = () => {
-        history.push("/listTripsPage")
-    }
-
 
     return (
         <Container>
-            <h1>Bella Viagem</h1>
-            <button onClick={goToTheListTripsPage}>Vamos viajar!</button>
+            <Card>
+                <h1>Bella Viagem</h1>
+                <button onClick={() => props.goTo("/listTrips", history)}>Vamos viajar!</button>
+            </Card>
         </Container>
     )
 }

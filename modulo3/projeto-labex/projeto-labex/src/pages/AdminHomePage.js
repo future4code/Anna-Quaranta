@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useProtectPage } from "../hooks/useProtectPage";
 import { baseUrl } from "../constants/url";
-import styled from "styled-components";
+import { Container, Card, Central, Button , Info} from '../styles/AdminHomePageStyled'
+import delet from '../uteis/delet.svg'
+import detail from '../uteis/detalhes.svg'
 import axios from "axios";
 
-const Card = styled.div`
-    border: 1px solid black;
-`
 const AdminHomePage = (props) => {
     const [trips, setTrips] = useState([])
     const history = useHistory()
-    useProtectPage(history, "/loginPage")
+    useProtectPage(history, "/login")
 
     useEffect(() => {
         getTrips()
@@ -48,29 +47,37 @@ const AdminHomePage = (props) => {
 
     const listTrips = trips.map((trip) => {
         return (
-            <Card key={trip.id} onClick={() => props.goTo(`/tripDetailsPage/${trip.id}`,history)}>
-                <p>{trip.name}</p>
-                <p>{trip.description}</p>
-                <p>{trip.planet}</p>
-                <p>{trip.durationInDays}</p>
-                <p>{trip.date}</p>
-                <button onClick={() => deleteTrip(trip.id)}>Excluir</button>
+            <Card key={trip.id}>
+                <Info>
+                    <p>Nome: {trip.name}</p>
+                    <p>Descrição: {trip.description}</p>
+                    <p>Planeta: {trip.planet}</p>
+                    <p>Duração: {trip.durationInDays} dias</p>
+                    <p>Data: {trip.date}</p>
+                </Info>
+                <img src={detail} alt="icone de detalhes" onClick={() => props.goTo(`/tripDetails/${trip.id}`, history)}/>
+                <img src={delet} alt="icone de deletar" onClick={() => deleteTrip(trip.id)}/>
             </Card>
         )
     })
 
     const logout = () => {
         localStorage.removeItem("token")
-        props.goTo("/loginPage", history)
+        props.goTo("/login", history)
     }
 
     return (
-        <div>
-            <button onClick={() => props.goToBack(history)}>Voltar</button>
-            <button onClick={() => props.goTo('/createTripPage', history)}>Criar Viagem</button>
-            <button onClick={logout}>Logout</button>
-            {listTrips}
-        </div>
+        <Container>
+            <Central>
+                <h2>Bem vinde, Administrador!</h2>
+                <Button>
+                    <button onClick={() => props.goToBack(history)}>Voltar</button>
+                    <button onClick={() => props.goTo('/createTrip', history)}>Criar Viagem</button>
+                    <button onClick={logout}>Logout</button>
+                </Button>
+                {listTrips}
+            </Central>
+        </Container>
     )
 }
 

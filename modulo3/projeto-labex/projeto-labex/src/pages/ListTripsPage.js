@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
-import { Card } from "../styles/ListTripsPageStyled"
-// import { useRequestDataGet } from "../services/useRequestDataGet"
+import { Container, Central, Card, Trips} from "../styles/ListTripsPageStyled"
 import { baseUrl } from "../constants/url"
 
 const ListTripsPage = (props) => {
@@ -29,22 +28,25 @@ const ListTripsPage = (props) => {
     const listTrips = trips.map((trip) => {
         return (
             <Card key={trip.id}>
-                <p>{trip.name}</p>
-                <p>{trip.description}</p>
-                <p>{trip.planet}</p>
-                <p>{trip.durationInDays}</p>
-                <p>{trip.date}</p>
+                <p>Nome: {trip.name}</p>
+                <p>Descrição: {trip.description}</p>
+                <p>Planeta: {trip.planet}</p>
+                <p>Duração: {trip.durationInDays} dias</p>
+                <p>Data: {trip.date}</p>
             </Card>
         )
     })
 
     return (
-        <div>
-            <button onClick={() => props.goToBack(history)}>Voltar</button>
-            <button onClick={() => props.goTo("/applicationFormPage", history)}>Inscrever-se</button>
-            <h1>ListTripsPage</h1>
-            {listTrips}
-        </div>
+        <Container>
+            <Central>
+                <button onClick={() => props.goTo("/applicationForm", history)}>Inscrever-se</button>
+                <h1>Se aventure conosco!</h1>
+                <Trips>{listTrips}</Trips>
+                <button onClick={() => props.goToBack(history)}>Voltar</button>
+            </Central>
+
+        </Container>
     )
 }
 

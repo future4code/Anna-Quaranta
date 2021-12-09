@@ -31,23 +31,23 @@ export const Router = () => {
                     <AdminHomePage goTo={goTo} goToBack={goToBack} />
                 </Route>
 
-                <Route exact path={"/applicationFormPage"} >
+                <Route exact path={"/applicationForm"} >
                     <ApplicationFormPage goTo={goTo} goToBack={goToBack} />
                 </Route>
 
-                <Route exact path= {"/createTripPage"}>
+                <Route exact path= {"/createTrip"}>
                     <CreateTripPage goTo={goTo} goToBack={goToBack} />
                 </Route>
 
-                <Route exact path={"/listTripsPage"}>
+                <Route exact path={"/listTrips"}>
                     <ListTripsPage goTo={goTo} goToBack={goToBack} />
                 </Route>
 
-                <Route exact path={"/loginPage"}>
+                <Route exact path={"/login"}>
                     <LoginPage goTo={goTo} goToBack={goToBack} />
                 </Route>
 
-                <Route exact path={"/tripDetailsPage/:id"}>
+                <Route exact path={"/tripDetails/:id"}>
                     <TripDetailsPage goTo={goTo} goToBack={goToBack}/>
                 </Route>
             </Switch>

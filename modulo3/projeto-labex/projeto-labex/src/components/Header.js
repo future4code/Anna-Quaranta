@@ -1,5 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import { Container, Button } from '../styles/HeaderStyled'
+import home from '../uteis/home.svg'
+import adm from '../uteis/adm.svg'
 
 const Header = (props) => {
     const history = useHistory()
@@ -7,7 +9,7 @@ const Header = (props) => {
 
     const AreaFuncionarios = () => {
         if (token === null){
-            props.goTo("/loginPage", history)
+            props.goTo("/login", history)
         }else{
             props.goTo("/adminHomePage", history)
         }
@@ -17,8 +19,9 @@ const Header = (props) => {
         <Container>
             <h1>Bella Viagem</h1>
             <Button>
-                <button onClick={() => props.goTo("/", history)}>Home</button>
-                <button onClick={AreaFuncionarios}>Área do Funcionário</button>
+                <img src={home} onClick={() => props.goTo("/", history)} alt="icone de home"/>
+                <img src={adm} onClick={AreaFuncionarios} alt="icone da area restrita a funcionarios"/>
+                
             </Button>
         </Container>
     )

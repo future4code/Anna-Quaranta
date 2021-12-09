@@ -1,16 +1,22 @@
 import styled from 'styled-components'
 
-const Container = styled.div`
-  border: 1px solid black;
-  width: 100%;
-  height: 10vh;
-  background-color: grey;
+
+export const Container = styled.div`
+  height: 9vh;
+  background-color: #0564FF;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 1vw;;
+  color: whitesmoke
 `
-const Button = styled.div`
-    border: 1px solid blue;
-`
+export const Button = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 7vw;
+    height: 2.5vw;
 
-export {Container, Button}
+    img{
+      cursor: pointer;
+    }
+`

@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { baseUrl } from "../constants/url"
+import { Container, Container2, Input, Button} from "../styles/LoginPageStyled"
 
 const LoginPage = () => {
     const history = useHistory()
@@ -46,13 +47,25 @@ const LoginPage = () => {
     }
 
     return (
-        <div>
-            <h2>Login</h2>
-            <input placeholder="Email" value={email} name="email" onChange={onChange} />
-            <input type="password" placeholder="Senha" value={password} name="password" onChange={onChange} />
-            <button>Voltar</button>
-            <button onClick={login}>Entrar</button>
-        </div>
+        <Container>
+            <Container2>
+                <h2>Login</h2>
+                <Input>
+                    <label>
+                        <legend>Digite seu email:</legend>
+                        <input placeholder="Email" value={email} name="email" onChange={onChange} />
+                    </label>
+                    <label>
+                        <legend>Digite sua senha:</legend>
+                        <input type="password" placeholder="Senha" value={password} name="password" onChange={onChange} />
+                    </label>
+                </Input>
+                <Button>
+                    <button>Voltar</button>
+                    <button onClick={login}>Entrar</button>
+                </Button>
+            </Container2>
+        </Container>
     )
 }
 
