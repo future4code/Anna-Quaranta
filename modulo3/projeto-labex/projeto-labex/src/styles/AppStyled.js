@@ -7,6 +7,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif, Arial;
+
+    h1,h2{
+      font-family: 'Exo', sans-serif;
+    }
 
     button{
       cursor: pointer;
@@ -17,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
   width: 100%;
   height: auto;
 `

@@ -8,7 +8,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 1vw;;
-  color: whitesmoke
+  color: whitesmoke;
+  
 `
 export const Button = styled.div`
     display: flex;

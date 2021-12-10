@@ -1,12 +1,10 @@
-import styled from "styled-components"
+import styled from "styled-components";
+
 
 export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
-    background-size: cover;
-    /* background-position: center; */
 
     
     button{
@@ -36,11 +34,15 @@ export const Central = styled.div`
     background-color: rgba(0,0,255,0.2);
     color: white;
 
-    h2{
+    h2,h3{
         margin: 1vw;
         font-size: 4vw;
         text-shadow: 2px 2px 3px grey;
-        
+        text-align: center;   
+    }
+
+    h3{
+        font-size: 3vw;
     }
 `
 
@@ -55,6 +57,7 @@ export const Card = styled.div`
     background-color: white;
     color: black;
     box-shadow: 5px 6px 6px #888888;
+    font-size: 1.5vw;
 
 `
 

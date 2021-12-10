@@ -1,18 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import styled from "styled-components";
 import { baseUrl } from "../constants/url";
+import { Central, Container, Card } from "../styles/TripDetailsPageStyled";
+import { useProtectPage } from "../hooks/useProtectPage";
 
-const Card = styled.div`
-    border: 1px solid black;
-`
+
 const TripDetailsPage = (props) => {
     const pathParams = useParams()
     const id = pathParams.id
     const history = useHistory()
     const [detail, setDetail] = useState({})
     const [candidates, setCandidates] = useState([{}])
+    useProtectPage(history, "/login")
 
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const TripDetailsPage = (props) => {
         } catch (error) {
             console.log(error.response)
             alert("Aconteceu um erro. Sentimos muito! Volte mais tarde!")
-            
+
         }
     }
 
@@ -58,16 +58,23 @@ const TripDetailsPage = (props) => {
     console.log(listCandidates)
 
     return (
-        <div>
-            <h2>{detail.name}</h2>
-            <p>Name: {detail.name}</p>
-            <p>Descrição: {detail.description}</p>
-            <p>Planeta: {detail.planet}</p>
-            <p>Duração: {detail.durationInDays} dias</p>
-            <p>Data: {detail.date}</p>
-            <button onClick={() => props.goToBack(history)}>Voltar</button>
-            <h2>Candidatos Pendentes:</h2>
-        </div>
+        <Container>
+            <Central>
+                <h2>{detail.name}</h2>
+                <Card>
+                    <p>Nome: {detail.name}</p>
+                    <p>Descrição: {detail.description}</p>
+                    <p>Planeta: {detail.planet}</p>
+                    <p>Duração: {detail.durationInDays} dias</p>
+                    <p>Data: {detail.date}</p>
+                </Card>
+                <button onClick={() => props.goToBack(history)}>Voltar</button>
+                <h3>Candidatos Pendentes:</h3>
+                <h3>Candidatos Aprovados:</h3>
+
+
+            </Central>
+        </Container>
     )
 }
 

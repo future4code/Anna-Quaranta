@@ -20,6 +20,7 @@ export const Central = styled.div`
         margin: 1vw;
         font-size: 4vw;
         text-shadow: 2px 2px 3px grey;
+        text-align: center;
     }
 `
 
@@ -51,14 +52,14 @@ export const Card = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 1vw;
-    margin: 0.5vw;
+    margin: 0.5vw 0 1.5vw 0;
     min-height: 8vw;
     width: 85%;
     background-color: white;
     color: black;
     box-shadow: 5px 6px 6px #888888;
-
     img{
+        margin-left: 1vw;
         width: 2.5vw;
         cursor: pointer;
     }

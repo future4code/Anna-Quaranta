@@ -41,7 +41,7 @@ const ListTripsPage = (props) => {
         <Container>
             <Central>
                 <button onClick={() => props.goTo("/applicationForm", history)}>Inscrever-se</button>
-                <h1>Se aventure conosco!</h1>
+                <h2>Se aventure conosco!</h2>
                 <Trips>{listTrips}</Trips>
                 <button onClick={() => props.goToBack(history)}>Voltar</button>
             </Central>

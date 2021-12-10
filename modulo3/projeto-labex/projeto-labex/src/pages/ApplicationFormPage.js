@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../constants/url";
-import { Container, Container2, Form, Button } from "../styles/ApplicationFormStyled";
+import {Container2, Form, Button } from "../styles/FormStyled";
+import { Container } from "../styles/ApplicationFormStyled";
 
 const ApplicationFormPage = (props) => {
     const history = useHistory()
@@ -132,7 +133,7 @@ const ApplicationFormPage = (props) => {
 
                     <label>
                     <legend>Texto pra sua candidatura:</legend>
-                        <input placeholder="Texto de Candidatura" value={applicationText} onChange={onChange} name="applicationText" />
+                        <textarea placeholder="Texto de Candidatura" value={applicationText} onChange={onChange} name="applicationText" />
                     </label>
 
                     <label>
