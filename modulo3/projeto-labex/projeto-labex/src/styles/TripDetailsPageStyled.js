@@ -31,6 +31,7 @@ export const Central = styled.div`
     align-items: center;
     width: 50%;
     margin: 1vw;
+    padding-bottom: 1vw;
     background-color: rgba(0,0,255,0.2);
     color: white;
 
@@ -61,8 +62,44 @@ export const Card = styled.div`
 
 `
 
-export const Trips = styled.div`
+export const Card2 = styled.div`
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    padding: 1vw;
+    margin: 0.5vw;
+    min-height: 8vw;
+    width: 80%;
+    background-color: white;
+    color: black;
+    box-shadow: 5px 6px 6px #888888;
+    font-size: 1.2vw;
+
+img{
+        margin: 0.5vw;
+        width: 2.1vw;
+        cursor: pointer;
+    }
+`
+
+export const Info = styled.div`
+    width: 83%;
+
+`
+export const Card3 = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    padding: 1vw;
+    min-height: 8vw;
+    width: 80%;
+    background-color: white;
+    color: black;
+    box-shadow: 5px 6px 6px #888888;
+    font-size: 1.2vw;
+
+    li{
+        margin: 0.2vw;
+        list-style: none;
+    }
 `

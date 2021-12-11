@@ -63,24 +63,14 @@ export const Form = styled.form`
     }
 `
 
-export const Button = styled.div`
+export const Icones = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 40%;
     margin: 1vw;
 
-    button{
-        width: 40%;
-        padding: 0.4vw;
-        background-color: rgba(0,0,255,0.8);
-        border: 2px groove white;
-        color: whitesmoke;
-        font-size: 1.5vw;
-
-        &:hover{
-            background-color: rgba(255,255,255,0.8);
-            border: 2px dotted rgba(0,0,255,0.8);
-            color: rgba(0,0,255,0.8);
-        }
+    img{
+        cursor: pointer;
+        width: 3vw;
     }
 `

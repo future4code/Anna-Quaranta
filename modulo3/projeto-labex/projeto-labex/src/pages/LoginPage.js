@@ -2,9 +2,11 @@ import axios from "axios"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { baseUrl } from "../constants/url"
-import { Container, Container2, Input, Button} from "../styles/LoginPageStyled"
+import { Container, Container2, Input, Icones} from "../styles/LoginPageStyled"
+import loginIcon from "../uteis/login.svg"
+import back from "../uteis/back.svg"
 
-const LoginPage = () => {
+const LoginPage = (props) => {
     const history = useHistory()
 
     const [email, setEmail] = useState("")
@@ -60,10 +62,10 @@ const LoginPage = () => {
                         <input type="password" placeholder="Senha" value={password} name="password" onChange={onChange} />
                     </label>
                 </Input>
-                <Button>
-                    <button>Voltar</button>
-                    <button onClick={login}>Entrar</button>
-                </Button>
+                <Icones>
+                    <img src={back} onClick= {() => props.goToBack(history)} alt="Icone de voltar"/>
+                    <img src={loginIcon} onClick={login} alt="Icone de Login"/>
+                </Icones>
             </Container2>
         </Container>
     )

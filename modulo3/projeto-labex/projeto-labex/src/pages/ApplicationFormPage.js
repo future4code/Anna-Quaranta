@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../constants/url";
-import {Container2, Form, Button } from "../styles/FormStyled";
+import {Container2, Form, Icones } from "../styles/FormStyled";
 import { Container } from "../styles/ApplicationFormStyled";
+import back from "../uteis/back.svg"
+import send from "../uteis/send.svg"
+
 
 const ApplicationFormPage = (props) => {
     const history = useHistory()
@@ -322,10 +325,10 @@ const ApplicationFormPage = (props) => {
                         </select>
                     </label>
                 </Form>
-                <Button>
-                    <button onClick={() => props.goToBack(history)}>Voltar</button>
-                    <button onClick={applyToTrip}>Enviar</button>
-                </Button>
+                <Icones>
+                    <img src={back} onClick={() => props.goToBack(history)} alt="Icone de voltar"/>
+                    <img src={send} onClick={applyToTrip} alt="Icone de enviar"/>
+                </Icones>
             </Container2>
         </Container>
     )

@@ -45,14 +45,15 @@ export const Input = styled.div`
         margin: 1vw;
     }
 `
-export const Button = styled.div`
+export const Icones = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    width: 70%;
+    width: 40%;
     
-    button{
-        padding: 0.5vw;
-        width: 40%;
+    img{
+        cursor: pointer;
+        width: 3vw;
     }
 
 `
