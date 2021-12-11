@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 `
 
 export const Central = styled.div`
@@ -13,6 +14,7 @@ export const Central = styled.div`
     align-items: center;
     width: 50%;
     margin: 1vw;
+    min-height: 30vw;
     background-color: rgba(0,0,255,0.2);
     color: white;
 

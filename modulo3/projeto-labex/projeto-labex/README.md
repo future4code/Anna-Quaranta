@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+# BELLA VIAGEM
+## Projeto LabeX
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### O que é:
+Bella Viagem é um site de viagem onde você poderá visualizá-las e inscrever-se na(s) que você mais se encaixar.
 
-## Available Scripts
+### Como usar: 
+Cliente: Clique em "Vamos viajar" na página inicial para visualizar as viagens atuais. Escolha uma do seu interesse e clique em "Inscrever-se" para aplicar a ela. Estaremos esperando sua candidatura.
 
-In the project directory, you can run:
+Administrador: A área do Administrador deve ser acessada pelo icone direito do cabeçalho do site. Você será levade para uma página de login onde deverá inserir os dados pedidos para que tenha acesso a essa parte privada. Se assim for feito, uma tela aparecerá com todas as viagens existentes podendo obter mais detalhes (candidatos pendentes a serem aprovados ou não, e os aprovados.) ou exclui-las por meio dos icones na esquerda do seu respectivo card. No topo da página a opção de voltar uma página, se deslogar e criar uma viagem, um formulário com todas as informações relevantes.
 
-### `npm start`
+### Tecnologias utilizadas:
+* React.js (Incluindo javascript e Html)
+* Biblioteca Axios
+* Biblioteca Styled Components
+* Biblioteca React-Spinners
+* React Router
+* API LabeX
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Imagens:

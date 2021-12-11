@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const Container = styled.div`
   height: 9vh;
   background-color: #0564FF;
@@ -9,6 +8,10 @@ export const Container = styled.div`
   justify-content: space-between;
   padding: 0 1vw;;
   color: whitesmoke;
+
+  h1{
+    cursor: pointer;
+  }
   
 `
 export const Button = styled.div`

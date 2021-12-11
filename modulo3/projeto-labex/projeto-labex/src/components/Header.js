@@ -17,7 +17,7 @@ const Header = (props) => {
 
     return (
         <Container>
-            <h1>Bella Viagem</h1>
+            <h1 onClick={() => props.goTo("/", history)}>Bella Viagem</h1>
             <Button>
                 <img src={home} onClick={() => props.goTo("/", history)} alt="icone de home"/>
                 <img src={adm} onClick={AreaFuncionarios} alt="icone da area restrita a funcionarios"/>

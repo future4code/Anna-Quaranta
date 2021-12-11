@@ -6,8 +6,7 @@ export const Container = styled.div`
     align-items: center;
     background-image: url("https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
     background-size: cover;
-    /* background-position: center; */
-
+    height: 100%;
     
     button{
       width: 15vw;
@@ -32,6 +31,7 @@ export const Central = styled.div`
     justify-content: space-evenly;
     align-items: center;
     width: 50%;
+    min-height: 30vw;
     margin: 1vw;
     background-color: rgba(0,0,255,0.2);
     color: white;

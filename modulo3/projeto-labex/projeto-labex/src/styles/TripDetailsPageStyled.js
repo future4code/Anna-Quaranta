@@ -30,6 +30,7 @@ export const Central = styled.div`
     justify-content: space-evenly;
     align-items: center;
     width: 50%;
+    min-height: 10vw;
     margin: 1vw;
     padding-bottom: 1vw;
     background-color: rgba(0,0,255,0.2);

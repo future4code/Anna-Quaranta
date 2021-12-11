@@ -5,11 +5,13 @@ import { baseUrl } from "../constants/url";
 import { Container, Card, Central, Button , Info} from '../styles/AdminHomePageStyled'
 import delet from '../uteis/delet.svg'
 import detail from '../uteis/detalhes.svg'
+import Loading from '../components/Loading'
 import axios from "axios";
 
 const AdminHomePage = (props) => {
     const [trips, setTrips] = useState([])
     const history = useHistory()
+    const [loading, setLoading] = useState(false)
     useProtectPage(history, "/login")
 
     useEffect(() => {
@@ -17,10 +19,11 @@ const AdminHomePage = (props) => {
     }, [])
 
     const getTrips = () => {
-
+        setLoading(true)
         axios.get(`${baseUrl}/trips`)
             .then((res) => {
                 setTrips(res.data.trips)
+                setLoading(false)
             })
             .catch((error) => {
                 alert("Aconteceu um erro. Sentimos muito! Volte mais tarde.")
@@ -75,7 +78,8 @@ const AdminHomePage = (props) => {
                     <button onClick={() => props.goTo('/createTrip', history)}>Criar Viagem</button>
                     <button onClick={logout}>Logout</button>
                 </Button>
-                {listTrips}
+                {loading === true ? <Loading/> : listTrips}
+                {/* {listTrips} */}
             </Central>
         </Container>
     )

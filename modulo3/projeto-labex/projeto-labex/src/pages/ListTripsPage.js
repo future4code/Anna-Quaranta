@@ -3,21 +3,25 @@ import { useHistory } from "react-router-dom"
 import axios from "axios"
 import { Container, Central, Card, Trips} from "../styles/ListTripsPageStyled"
 import { baseUrl } from "../constants/url"
+import Loading from "../components/Loading"
+
 
 const ListTripsPage = (props) => {
 
     const history = useHistory()
     const [trips, setTrips] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         getTrips()
     }, [])
 
     const getTrips = () => {
-
+        setLoading(true)
         axios.get(`${baseUrl}/trips`)
             .then((res) => {
                 setTrips(res.data.trips)
+                setLoading(false)
             })
             .catch((error) => {
                 alert("Aconteceu um erro. Sentimos muito! Volte mais tarde.")
@@ -42,8 +46,11 @@ const ListTripsPage = (props) => {
             <Central>
                 <button onClick={() => props.goTo("/applicationForm", history)}>Inscrever-se</button>
                 <h2>Se aventure conosco!</h2>
+                {loading === true ? <Loading/> :
+                <>
                 <Trips>{listTrips}</Trips>
                 <button onClick={() => props.goToBack(history)}>Voltar</button>
+                </>}
             </Central>
 
         </Container>
@@ -51,7 +58,3 @@ const ListTripsPage = (props) => {
 }
 
 export default ListTripsPage;
-
-// deu erro na hora de tirar o objeto do trips da const trip. Ele não roda.
-// const trips = useRequestDataGet(`${baseUrl}/trips`)
-// console.log(trips.trips)
