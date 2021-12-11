@@ -18,3 +18,10 @@ Administrador: A área do Administrador deve ser acessada pelo icone direito do 
 * API LabeX
 
 ### Imagens:
+![image](https://media.discordapp.net/attachments/913923827623415859/919299943905235004/unknown.png?width=1025&height=464)
+![image](https://media.discordapp.net/attachments/913923827623415859/919301103034707968/unknown.png?width=705&height=321)
+![image](https://media.discordapp.net/attachments/913923827623415859/919301184928485466/unknown.png?width=705&height=319)
+![image](https://media.discordapp.net/attachments/913923827623415859/919302223077470268/unknown.png?width=705&height=322)
+![image](https://media.discordapp.net/attachments/913923827623415859/919301575455932517/unknown.png?width=705&height=320)
+![image](https://media.discordapp.net/attachments/913923827623415859/919301694729379910/unknown.png?width=705&height=319)
+![image](https://media.discordapp.net/attachments/913923827623415859/919301927391596624/unknown.png?width=705&height=319)
