@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
-import { baseUrl } from "../constants/url"
-import { Container, Container2, Input, Icones} from "../styles/LoginPageStyled"
+import { baseUrl } from "../constants/axiosConfig"
+import { Container, Container2, Input, Icones } from "../styles/LoginPageStyled"
 import loginIcon from "../uteis/login.svg"
 import back from "../uteis/back.svg"
 
@@ -12,14 +12,14 @@ const LoginPage = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+
+    //---- ONCHANGE
     const onChange = (e) => {
         switch (e.target.name) {
             case "email":
-                console.log(e.target.value)
                 setEmail(e.target.value)
                 break;
             case "password":
-                console.log(e.target.value)
                 setPassword(e.target.value)
                 break
             default:
@@ -27,6 +27,9 @@ const LoginPage = (props) => {
                 break;
         }
     }
+
+
+    //----REQUISIÇÕES ------
 
     const login = async () => {
         const body = {
@@ -41,7 +44,6 @@ const LoginPage = (props) => {
             history.replace("/adminHomePage")
 
         } catch (error) {
-            console.log(error.response)
             alert("O usuário não foi encontrado. Tente novamente")
             setEmail("")
             setPassword("")
@@ -63,8 +65,8 @@ const LoginPage = (props) => {
                     </label>
                 </Input>
                 <Icones>
-                    <img src={back} onClick= {() => props.goToBack(history)} alt="Icone de voltar"/>
-                    <img src={loginIcon} onClick={login} alt="Icone de Login"/>
+                    <img src={back} onClick={() => props.goToBack(history)} alt="Icone de voltar" />
+                    <img src={loginIcon} onClick={login} alt="Icone de Login" />
                 </Icones>
             </Container2>
         </Container>

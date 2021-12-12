@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { baseUrl } from "../constants/url";
-import {Container2, Form, Icones } from "../styles/FormStyled";
+import { baseUrl } from "../constants/axiosConfig";
+import { Container2, Form, Icones } from "../styles/FormStyled";
 import { Container } from "../styles/ApplicationFormStyled";
 import back from "../uteis/back.svg"
 import send from "../uteis/send.svg"
@@ -32,7 +32,6 @@ const ApplicationFormPage = (props) => {
             })
             .catch((error) => {
                 alert("Aconteceu um erro. Sentimos muito! Volte mais tarde.")
-                console.log(error.response)
             })
     }
 
@@ -47,7 +46,6 @@ const ApplicationFormPage = (props) => {
 
         try {
             const response = await axios.post(`${baseUrl}/trips/${trip}/apply`, body)
-            console.log(response)
             alert("Aplicação feita. Boa sorte!")
             setTrip("")
             setName("")
@@ -57,10 +55,7 @@ const ApplicationFormPage = (props) => {
             setCountry("")
         } catch (error) {
             alert("Aconteceu um erro. Sentimos muito! Volte mais tarde.")
-            console.log(error.response)
         }
-
-        console.log("Clicou!")
 
     }
 
@@ -72,7 +67,6 @@ const ApplicationFormPage = (props) => {
         switch (e.target.name) {
 
             case "trip":
-                console.log(e.target.value)
                 setTrip(e.target.value)
                 break;
 
@@ -117,7 +111,7 @@ const ApplicationFormPage = (props) => {
                 <h2>Inscreva-se para uma viagem</h2>
                 <Form method="GET" action="#">
                     <label>
-                    <legend>Viagem:</legend>
+                        <legend>Viagem:</legend>
                         <select name="trip" value={trip} onChange={onChange}>
                             <option selected>Escolha uma viagem</option>
                             {listTrips}
@@ -125,27 +119,27 @@ const ApplicationFormPage = (props) => {
                     </label>
 
                     <label>
-                    <legend>Seu nome:</legend>
+                        <legend>Seu nome:</legend>
                         <input placeholder="Nome" value={name} onChange={onChange} name="name" />
                     </label>
 
                     <label>
-                    <legend>Sua idade:</legend>
+                        <legend>Sua idade:</legend>
                         <input type="number" placeholder="Idade" onChange={onChange} value={age} name="age" />
                     </label>
 
                     <label>
-                    <legend>Texto pra sua candidatura:</legend>
+                        <legend>Texto pra sua candidatura:</legend>
                         <textarea placeholder="Texto de Candidatura" value={applicationText} onChange={onChange} name="applicationText" />
                     </label>
 
                     <label>
-                    <legend>Sua profissão:</legend>
+                        <legend>Sua profissão:</legend>
                         <input placeholder="Profissão" value={profession} onChange={onChange} name="profession" />
                     </label>
 
                     <label>
-                    <legend>Selecione seu país:</legend>
+                        <legend>Selecione seu país:</legend>
                         <select name="country" value={country} onChange={onChange}>
                             <option selected>Escolha um País</option>
                             <option value="África do Sul">África do Sul</option>
@@ -326,8 +320,8 @@ const ApplicationFormPage = (props) => {
                     </label>
                 </Form>
                 <Icones>
-                    <img src={back} onClick={() => props.goToBack(history)} alt="Icone de voltar"/>
-                    <img src={send} onClick={applyToTrip} alt="Icone de enviar"/>
+                    <img src={back} onClick={() => props.goToBack(history)} alt="Icone de voltar" />
+                    <img src={send} onClick={applyToTrip} alt="Icone de enviar" />
                 </Icones>
             </Container2>
         </Container>

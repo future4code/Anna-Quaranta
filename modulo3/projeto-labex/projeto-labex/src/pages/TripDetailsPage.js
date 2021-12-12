@@ -1,19 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { baseUrl } from "../constants/url";
 import { Central, Container, Card, Card2, Info, Card3 } from "../styles/TripDetailsPageStyled";
 import { useProtectPage } from "../hooks/useProtectPage";
 import add from "../uteis/add.svg"
 import deny from "../uteis/deny.svg"
 import Loading from "../components/Loading";
+import { token, baseUrl } from "../constants/axiosConfig";
 
 
 const TripDetailsPage = (props) => {
     const pathParams = useParams()
     const history = useHistory()
     const id = pathParams.id
-    const token = localStorage.getItem("token")
     const [detail, setDetail] = useState({})
     const [candidates, setCandidates] = useState([])
     const [approveds, setApproveds] = useState([])
@@ -25,6 +24,8 @@ const TripDetailsPage = (props) => {
         getTripDetail()
     }, [])
 
+
+    //----- REQUISIÇÕES 
     const getTripDetail = async () => {
         setLoading(true)
         try {
@@ -34,14 +35,12 @@ const TripDetailsPage = (props) => {
                 }
             })
 
-            console.log(response.data.trip)
             setDetail(response.data.trip)
             setApproveds(response.data.trip.approved)
             setCandidates(response.data.trip.candidates)
             setLoading(false)
 
         } catch (error) {
-            console.log(error)
             alert("Aconteceu um erro. Sentimos muito! Volte mais tarde!")
 
         }
@@ -67,6 +66,8 @@ const TripDetailsPage = (props) => {
         }
     }
 
+    //----- MAP
+
     const listCandidates = candidates.map((candidate) => {
         return (
             <Card2 key={candidate.id}>
@@ -89,6 +90,8 @@ const TripDetailsPage = (props) => {
     const listApproved = approveds.map((approved) => {
         return (<li key={approved.id}>{approved.name}</li>)
     })
+
+    //RETURN
 
     return (
         <Container>

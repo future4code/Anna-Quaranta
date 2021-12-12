@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
-import { Container, Central, Card, Trips} from "../styles/ListTripsPageStyled"
-import { baseUrl } from "../constants/url"
+import { Container, Central, Card, Trips } from "../styles/ListTripsPageStyled"
+import { baseUrl } from "../constants/axiosConfig"
 import Loading from "../components/Loading"
 
 
@@ -16,6 +16,8 @@ const ListTripsPage = (props) => {
         getTrips()
     }, [])
 
+    //---- REQUISIÇÕES
+
     const getTrips = () => {
         setLoading(true)
         axios.get(`${baseUrl}/trips`)
@@ -25,9 +27,10 @@ const ListTripsPage = (props) => {
             })
             .catch((error) => {
                 alert("Aconteceu um erro. Sentimos muito! Volte mais tarde.")
-                console.log(error.response)
             })
     }
+
+    //---- MAP
 
     const listTrips = trips.map((trip) => {
         return (
@@ -46,11 +49,11 @@ const ListTripsPage = (props) => {
             <Central>
                 <button onClick={() => props.goTo("/applicationForm", history)}>Inscrever-se</button>
                 <h2>Se aventure conosco!</h2>
-                {loading === true ? <Loading/> :
-                <>
-                <Trips>{listTrips}</Trips>
-                <button onClick={() => props.goToBack(history)}>Voltar</button>
-                </>}
+                {loading === true ? <Loading /> :
+                    <>
+                        <Trips>{listTrips}</Trips>
+                        <button onClick={() => props.goToBack(history)}>Voltar</button>
+                    </>}
             </Central>
 
         </Container>

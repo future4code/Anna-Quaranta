@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { baseUrl } from "../constants/url";
+import { baseUrl, token } from "../constants/axiosConfig";
 import { Container, Container2, Form, Icones } from "../styles/FormStyled"
 import { useProtectPage } from "../hooks/useProtectPage";
 import back from "../uteis/back.svg"
@@ -17,27 +17,23 @@ const CreateTripPage = (props) => {
     useProtectPage(history, "/login")
 
 
+    // ------ONCHANGES
 
     const onChange = (e) => {
         switch (e.target.name) {
             case "nameTrip":
-                console.log(e.target.value)
                 setNameTrip(e.target.value)
                 break;
             case "planet":
-                console.log(e.target.value)
                 setPlanet(e.target.value)
                 break
             case "date":
-                console.log(e.target.value)
                 setDate(e.target.value)
                 break
             case "description":
-                console.log(e.target.value)
                 setDescription(e.target.value)
                 break
             case "durationInDays":
-                console.log(e.target.value)
                 setDurationInDays(e.target.value)
                 break
             default:
@@ -46,6 +42,7 @@ const CreateTripPage = (props) => {
         }
     }
 
+    //----- REQUISIÇÕES 
     const createTrip = async () => {
         const body = {
             name: nameTrip,
@@ -55,8 +52,6 @@ const CreateTripPage = (props) => {
             durationInDays: durationInDays
         }
 
-        const token = localStorage.getItem("token")
-
         try {
             const response = await axios.post(`${baseUrl}/trips`, body, {
                 headers: {
@@ -64,7 +59,6 @@ const CreateTripPage = (props) => {
                 }
             })
             alert("Viagem criada com sucesso!")
-            console.log(response.data)
             setNameTrip("")
             setPlanet("")
             setDate("")
@@ -76,7 +70,6 @@ const CreateTripPage = (props) => {
                 alert("Um ou mais campos obrigatórios não foram preenchidos. Por favor, preencha-os.")
             } else {
                 alert("Aconteceu um erro. Sentimos muito!")
-                console.log(error.response)
             }
         }
     }
@@ -124,7 +117,7 @@ const CreateTripPage = (props) => {
                 </Form>
                 <Icones>
                     <img src={back} onClick={() => props.goToBack(history)} alt="Icone de voltar" />
-                    <img src={send} onClick={createTrip} alt="Icone de enviar"/>
+                    <img src={send} onClick={createTrip} alt="Icone de enviar" />
                 </Icones>
             </Container2>
         </Container >
