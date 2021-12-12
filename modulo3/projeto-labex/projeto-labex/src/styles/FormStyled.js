@@ -5,6 +5,10 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     height: 55vw;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        height: 91vh;
+    }
 `
 
 export const Container2 = styled.div`
@@ -13,7 +17,7 @@ export const Container2 = styled.div`
     justify-content: space-evenly;
     align-items: center;
     height: 50vw;
-    width:38%;
+    width: 38%;
     background-color: #0274F5;
     border-radius: 2vw;
 
@@ -22,6 +26,15 @@ export const Container2 = styled.div`
         font-size: 3vw;
         color: white;
         text-align: center;
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 85%;
+        height: 90%;
+
+        h2{
+            font-size: 8vw;
+        }
     }
 `
 
@@ -61,8 +74,20 @@ export const Form = styled.form`
     input{
         padding: 0.5vw;
     }
-`
 
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        legend{
+            font-size: 4vw;
+            margin: 0.4vw;
+        }
+
+        input, select, textarea{
+            width: 60vw;
+            height: 7vw;
+        }
+      
+    }
+`
 export const Icones = styled.div`
     display: flex;
     justify-content: space-between;
@@ -72,5 +97,11 @@ export const Icones = styled.div`
     img{
         cursor: pointer;
         width: 3vw;
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        img{
+            width: 8vw;
+        }
     }
 `

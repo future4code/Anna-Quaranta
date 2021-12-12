@@ -24,6 +24,14 @@ export const Central = styled.div`
         text-shadow: 2px 2px 3px grey;
         text-align: center;
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 90%;
+
+        h2{
+            font-size: 10vw;
+        }
+    }
 `
 
 export const Button = styled.div`
@@ -47,6 +55,18 @@ export const Button = styled.div`
         }
     }
 
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 90%;
+        margin: 1vw;
+
+        button{
+            height: 13vw;
+            width: 40vw;
+            font-size: 4vw;
+            margin: 1.5vw;
+        }
+    }
+
 `
 
 export const Card = styled.div`
@@ -64,6 +84,15 @@ export const Card = styled.div`
         margin-left: 1vw;
         width: 2.5vw;
         cursor: pointer;
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 95%;
+        font-size: 4vw;
+
+        img{
+            width: 8vw;
+        }
     }
 
 `

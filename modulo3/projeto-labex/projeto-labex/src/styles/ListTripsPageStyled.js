@@ -42,6 +42,22 @@ export const Central = styled.div`
         text-shadow: 2px 2px 3px grey;
         
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        border: 1px solid black;
+        width: 90%;
+
+        h2{
+            font-size: 7vw;
+        }
+
+        button{
+            width: 50%;
+            height: 10vw;
+            font-size: 4vw;
+            margin: 2vw;
+        }
+    }
 `
 
 export const Card = styled.div`
@@ -55,6 +71,15 @@ export const Card = styled.div`
     background-color: white;
     color: black;
     box-shadow: 5px 6px 6px #888888;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        border: 1px solid black;
+        width: 90%;
+
+        p{
+            margin: 0.8vw;
+        }
+    }
 
 `
 

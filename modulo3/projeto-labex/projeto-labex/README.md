@@ -2,7 +2,7 @@
 ## Projeto LabeX
 
 ### O que é:
-Bella Viagem é um site de viagem onde você poderá visualizá-las e inscrever-se na(s) que você mais se encaixar.
+Bella Viagem é um site de viagem, responsivo para celular, onde você poderá visualizá-las e inscrever-se na(s) que você mais se encaixar.
 
 ### Como usar: 
 Cliente: Clique em "Vamos viajar" na página inicial para visualizar as viagens atuais. Escolha uma do seu interesse e clique em "Inscrever-se" para aplicar a ela. Estaremos esperando sua candidatura.
@@ -25,3 +25,13 @@ Administrador: A área do Administrador deve ser acessada pelo icone direito do 
 ![image](https://media.discordapp.net/attachments/913923827623415859/919301575455932517/unknown.png?width=705&height=320)
 ![image](https://media.discordapp.net/attachments/913923827623415859/919301694729379910/unknown.png?width=705&height=319)
 ![image](https://media.discordapp.net/attachments/913923827623415859/919301927391596624/unknown.png?width=705&height=319)
+
+### Responsivo para celular: 
+
+![image](https://media.discordapp.net/attachments/913923827623415859/919416205129965608/unknown.png?width=263&height=468)
+![image](https://media.discordapp.net/attachments/913923827623415859/919416284632973322/unknown.png?width=260&height=468)
+![image](https://media.discordapp.net/attachments/913923827623415859/919416386600701952/unknown.png?width=263&height=468)
+![image](https://media.discordapp.net/attachments/913923827623415859/919416461066379314/unknown.png?width=261&height=468)
+![image](https://media.discordapp.net/attachments/913923827623415859/919416651152248842/unknown.png?width=261&height=468)
+![image](https://media.discordapp.net/attachments/913923827623415859/919419311301480508/unknown.png?width=261&height=468)
+![image](https://media.discordapp.net/attachments/913923827623415859/919416723877289994/unknown.png?width=260&height=468)

@@ -39,4 +39,19 @@ export const Card = styled.div`
             color: rgba(0,0,255,0.8);
         }
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 80%;
+    
+        h1{
+            font-size: 16vw;
+            text-align: center;
+        }
+
+        button{
+            width: 40%;
+            height: 15%;
+            font-size: 3.5vw;
+        }
+    }
 `

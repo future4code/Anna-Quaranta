@@ -22,6 +22,16 @@ export const Container = styled.div`
             color: rgba(0,0,255,0.8);
         }
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        height: 91vh;
+
+        button{
+            width: 40%;
+            height: 5%;
+            font-size: 4vw;
+        }
+    }
 `
 
 export const Central = styled.div`
@@ -46,6 +56,20 @@ export const Central = styled.div`
     h3{
         font-size: 3vw;
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 90%;
+        height: 95%;
+
+        h2{
+            font-size: 11vw;
+        }
+
+        h3{
+            font-size: 6vw;
+        }
+        
+    }
 `
 
 export const Card = styled.div`
@@ -60,6 +84,15 @@ export const Card = styled.div`
     color: black;
     box-shadow: 5px 6px 6px #888888;
     font-size: 1.5vw;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 90%;
+        font-size: 3.2vw;
+
+        p{
+            margin: 1vw;
+        }
+    }
 
 `
 
@@ -76,10 +109,24 @@ export const Card2 = styled.div`
     box-shadow: 5px 6px 6px #888888;
     font-size: 1.2vw;
 
-img{
+    img{
         margin: 0.5vw;
         width: 2.1vw;
         cursor: pointer;
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 85%;
+        height: auto;
+        font-size: 3vw;
+
+        img{
+            width: 5vw;
+        }
+
+        p{
+            margin: 1vw 0 1vw 0.5vw;
+        }
     }
 `
 
@@ -102,5 +149,15 @@ export const Card3 = styled.div`
     li{
         margin: 0.2vw;
         list-style: none;
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 85%;
+        height: 20%;
+        gap: 2vw;
+        padding: 2vw;
+        margin-bottom: 2vw;
+        font-size: 3.5vw;
+  
     }
 `

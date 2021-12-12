@@ -34,6 +34,16 @@ export const Container2 = styled.div`
         color: white;
         font-size: 1.2vw;
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 85%;
+        height: 75%;
+
+        h2{
+            font-size: 18vw;
+        }
+    }
+    
 `
 
 export const Input = styled.div`
@@ -44,6 +54,24 @@ export const Input = styled.div`
     label{
         margin: 1vw;
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        height: 50vw;
+
+        input{
+            width: 70vw;
+            height: 13vw;
+        }
+
+        label{
+            margin: 4vw;
+        }
+
+        legend{
+            font-size: 4vw;
+        }
+    }
+
 `
 export const Icones = styled.div`
     display: flex;
@@ -55,5 +83,12 @@ export const Icones = styled.div`
         cursor: pointer;
         width: 3vw;
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        img{
+            width: 10vw;
+        }
+    }
+    
 
 `

@@ -9,6 +9,11 @@ export const Container = styled.div`
   padding: 0 1vw;;
   color: whitesmoke;
 
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    font-size: 4vw;
+    padding: 2vw;
+  }
+
   h1{
     cursor: pointer;
   }
@@ -22,5 +27,10 @@ export const Button = styled.div`
 
     img{
       cursor: pointer;
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+      width: 18vw;
+      height: 8vw;
     }
 `
