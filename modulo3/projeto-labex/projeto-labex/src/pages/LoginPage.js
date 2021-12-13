@@ -1,52 +1,30 @@
 import axios from "axios"
-import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { baseUrl } from "../constants/axiosConfig"
-import { Container, Container2, Input, Icones } from "../styles/LoginPageStyled"
-import loginIcon from "../uteis/login.svg"
-import back from "../uteis/back.svg"
+import { Container, Container2, Form, Input } from "../styles/LoginPageStyled"
+import useForm from "../hooks/useForm"
 
 const LoginPage = (props) => {
     const history = useHistory()
+    const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
+    console.log(form)
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-
-
-    //---- ONCHANGE
-    const onChange = (e) => {
-        switch (e.target.name) {
-            case "email":
-                setEmail(e.target.value)
-                break;
-            case "password":
-                setPassword(e.target.value)
-                break
-            default:
-                alert("Campo não encontrado. Entre em contato conosco!")
-                break;
-        }
-    }
 
 
     //----REQUISIÇÕES ------
 
-    const login = async () => {
-        const body = {
-            email: email,
-            password: password
-        }
+    const login = async (event) => {
+        event.preventDefault()
 
         try {
-            const response = await axios.post(`${baseUrl}/login`, body)
+            const response = await axios.post(`${baseUrl}/login`, form)
             alert("Acesso permitido! Bem vinde!")
             localStorage.setItem("token", response.data.token)
             history.replace("/adminHomePage")
 
         } catch (error) {
             alert("O usuário não foi encontrado. Tente novamente")
-            setEmail("")
-            setPassword("")
+            cleanFields()
         }
     }
 
@@ -54,20 +32,21 @@ const LoginPage = (props) => {
         <Container>
             <Container2>
                 <h2>Login</h2>
-                <Input>
-                    <label>
-                        <legend>Digite seu email:</legend>
-                        <input placeholder="Email" value={email} name="email" onChange={onChange} />
-                    </label>
-                    <label>
-                        <legend>Digite sua senha:</legend>
-                        <input type="password" placeholder="Senha" value={password} name="password" onChange={onChange} />
-                    </label>
-                </Input>
-                <Icones>
-                    <img src={back} onClick={() => props.goToBack(history)} alt="Icone de voltar" />
-                    <img src={loginIcon} onClick={login} alt="Icone de Login" />
-                </Icones>
+                <Form onSubmit={login}>
+                    <Input>
+                        <label>
+                            <legend>Digite seu email:</legend>
+                            <input placeholder="Email" type="email" value={form.email} name="email" onChange={onChange} required />
+                        </label>
+                        <label>
+                            <legend>Digite sua senha:</legend>
+                            <input type="password" placeholder="Senha" value={form.password} name="password" onChange={onChange} pattern="^.{6,}" title="É preciso ter no mínimo 6 caracteres." required />
+                        </label>
+                    </Input>
+                    <button>Logar</button>
+                </Form>
+                <button onClick={() => props.goToBack(history)}>Voltar</button>
+
             </Container2>
         </Container>
     )

@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Container2 = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     height: 85%;
     width: 30%;
@@ -35,6 +35,21 @@ export const Container2 = styled.div`
         font-size: 1.2vw;
     }
 
+    button{
+      width: 14vw;
+      height: 2.5vw;
+      background-color: rgba(0,0,255,0.8);
+      border: 2px groove white;
+      color: whitesmoke;
+      font-size: 1.0vw;
+
+      &:hover{
+            background-color: rgba(255,255,255,0.8);
+            border: 2px dotted rgba(0,0,255,0.8);
+            color: rgba(0,0,255,0.8);
+        }
+    }
+
     @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
         width: 85%;
         height: 75%;
@@ -42,8 +57,23 @@ export const Container2 = styled.div`
         h2{
             font-size: 18vw;
         }
+
+        button{
+            width: 50%;
+            height: 8vw;
+            font-size: 5vw;
+        }
     }
     
+`
+
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 60%;
+
 `
 
 export const Input = styled.div`

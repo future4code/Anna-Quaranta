@@ -36,6 +36,33 @@ export const Container2 = styled.div`
             font-size: 8vw;
         }
     }
+
+    button{
+      width: 8vw;
+      height: 2.5vw;
+      background-color: rgba(0,0,255,0.8);
+      border: 2px groove white;
+      color: whitesmoke;
+      font-size: 1.0vw;
+      margin: 1vw;
+
+      &:hover{
+            background-color: rgba(255,255,255,0.8);
+            border: 2px dotted rgba(0,0,255,0.8);
+            color: rgba(0,0,255,0.8);
+        }
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        button{
+            width: 25vw;
+            height: 8vw;
+            font-size: 5vw;
+        }
+      
+    }
+
+
 `
 
 export const Form = styled.form`
@@ -47,7 +74,6 @@ export const Form = styled.form`
     align-items: center;
     width: 80%;
     height: 70%;
-    padding: 0.5vw;
 
     label{
         margin: 0.2vw;
@@ -96,7 +122,7 @@ export const Icones = styled.div`
 
     img{
         cursor: pointer;
-        width: 3vw;
+        width: 5vw;
     }
 
     @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
@@ -105,3 +131,4 @@ export const Icones = styled.div`
         }
     }
 `
+
