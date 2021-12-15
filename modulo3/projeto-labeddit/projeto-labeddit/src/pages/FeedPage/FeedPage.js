@@ -1,14 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
-// import CardPost from "../../components/CardPost"
-import { BASE_URL, token } from '../../constants/urls'
 import useForm from "../../hooks/useForm"
 import useProtect from "../../hooks/useProtectPage"
 import { Card, Form, Header, Footer, Likes, Comments } from "./StyledFeed"
 import like from "../../assets/images/like.svg"
 import dislike from "../../assets/images/dislike.svg"
 import { goToPost } from "../../routes/coordinator"
+import { BASE_URL, token } from "../../constants/urls"
 
 const FeedPage = (props) => {
     const history = useHistory()
@@ -24,20 +23,7 @@ const FeedPage = (props) => {
 
     // REQUISIÇÕES
 
-    const getPosts = async () => {
-        try {
-            const response = await axios.get(`${BASE_URL}/posts/`, {
-                headers: {
-                    Authorization: token
-                }
-            })
-            console.log(response.data)
-            setPosts(response.data)
-        } catch (error) {
-            alert("Aconteceu um erro!")
-            console.log(error.response)
-        }
-    }
+    //CRIAR OS POSTS
 
     const createPost = async (event) => {
         event.preventDefault()
@@ -56,6 +42,24 @@ const FeedPage = (props) => {
             console.log(error.response)
         }
     }
+
+    //PEGAR OS POSTS
+
+    const getPosts = async () => {
+        try{
+            const response = await axios.get(`${BASE_URL}/posts`, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            setPosts(response.data)
+
+        }catch(error){
+            alert("Aconteceu um erro!")
+            console.log(error)
+        }
+    }
+
 
     const toVote = async (id, direction) => {
 

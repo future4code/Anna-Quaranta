@@ -7,14 +7,35 @@ import { BASE_URL, token } from "../../constants/urls"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import useForm from "../../hooks/useForm"
+import { useEffect, useState } from "react"
 
 const PostPage = (props) => {
     const params = useParams()
-    const { form, onChange, cleanFields} = useForm({
+    const id = params.id
+    const { form, onChange, cleanFields } = useForm({
         body: ""
     })
+    const [posts, setPosts] = useState([])
 
-    const id = params.id
+    useEffect(()=> {
+        getPosts()
+    }, [])
+
+    const getPosts = async () => {
+        try{
+            const response = await axios.get(`${BASE_URL}/posts`, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            setPosts(response.data)
+
+        }catch(error){
+            alert("Aconteceu um erro!")
+            console.log(error)
+        }
+    }
+
 
     const createComment = async () => {
         try{
@@ -23,45 +44,52 @@ const PostPage = (props) => {
                     Authorization: token
                 }
             })
-            alert("Comentário criado!")
+            alert("Comentário postado com sucesso!")
             console.log(response)
-            cleanFields()
-
-        }catch (error) {
+        }catch(error){
             alert("Aconteceu um erro!")
-            console.log(error.response)
+            console.log(error)
         }
     }
-    return (
-        <div>
-            <h1>PostPage</h1>
-            <Card>
+
+    const postEscolhido = posts.filter((post) => {
+        return post.id === id
+    }).map((post) => {
+        return(
+            <Card key={post.id}>
                 <Header>
-                    Nome de usuario
+                    <p>{post.username}</p>
                 </Header>
                 <div>
-                    <h3>Titulo da postagem</h3>
-                    Texto da postagem
+                    <h3>{post.title}</h3>
+                    {post.body}
                 </div>
                 <Footer>
                     <Likes>
                         <img src={like} alt="like" />
 
-                        count
+                        {post.voteSum}
 
                         <img src={dislike} alt="dislike" />
                     </Likes>
                     <Comments>
-                        count comentários
+                        {post.commentCount} comentários
                     </Comments>
                 </Footer>
             </Card>
-            <CardComment id={id}/>
+        )
+    })
+
+    return (
+        <div>
+            <h1>PostPage</h1>
+            {postEscolhido}
             <CreateComment onSubmit={createComment}>
-                <textarea placeholder="Digite um comentário:" value={form.body} name="body" onChange={onChange}/>
+                <textarea placeholder="Digite um comentário:" value={form.body} name="body" onChange={onChange} />
                 <button>Publicar</button>
             </CreateComment>
-            
+            <CardComment/>
+
         </div>
     )
 }

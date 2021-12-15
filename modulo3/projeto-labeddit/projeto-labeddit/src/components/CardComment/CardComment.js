@@ -6,22 +6,24 @@ import { Container } from "./StyledComment"
 
 const CardComment = (props) => {
     const [comments, setComments] = useState([])
-
     useEffect(() => {
         getPostComments()
     }, [])
+    console.log(props.id)
 
     const getPostComments = async () => {
-        try {
+        try{
             const response = await axios.get(`${BASE_URL}/posts/${props.id}/comments`, {
                 headers: {
-                    Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZmMGNhMTBhLWQ4NTItNGM2NS1hYjRjLTRhZWUyNDRhMmE5YyIsInJvbGUiOiJHVUVTVCIsImlhdCI6MTYzOTUyMTgyMCwiZXhwIjoxNjM5NTY1MDIwfQ.AtUp-tZGPEEo3INnD8tucGlKseHjdimnNAAoLNvL94M"
+                    Authorization: token
                 }
             })
 
-            console.log(response.data)
-        } catch (error) {
+            setComments(response.data)
 
+        }catch(error){
+            alert("Aconteceu um erro")
+            console.log(error)
         }
     }
 
@@ -34,9 +36,11 @@ const CardComment = (props) => {
         )
 
     })
+
     return (
         <div>
             {listComments}
+            asdaadasa
         </div>
 
     )
