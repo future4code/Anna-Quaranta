@@ -11,6 +11,8 @@ const CadastrePage = () => {
     })
 
     
+
+    
     //Chamar requisição de cadastro
 
     const onSubmitSignUp = (event) => {

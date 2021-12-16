@@ -5,11 +5,13 @@ import { BASE_URL } from "../../constants/urls"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import useRequestData from "../../hooks/useRequestData"
 import createPost from "../../services/createPost"
-import CardPost from "../../components/CardPost"
+import CardPost from "../../components/CardPost/CardPost"
+import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 
 const FeedPage = () => {
-    const history = useHistory()
     useProtectedPage()
+    useUnprotectedPage()
+    const history = useHistory()
     const [posts, atualizarPosts] = useRequestData([], `${BASE_URL}/posts`)
     const { form, onChange, cleanFields } = useForm({
         title: "",
@@ -44,8 +46,6 @@ const FeedPage = () => {
 
             </Card>
             {listPosts}
-
-
         </div>
     )
 }

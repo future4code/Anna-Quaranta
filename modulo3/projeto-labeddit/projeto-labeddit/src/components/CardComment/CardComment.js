@@ -1,54 +1,19 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { BASE_URL, token } from "../../constants/urls"
+import { BASE_URL } from "../../constants/urls"
 import { Container, CreateComment } from "./StyledComment"
 import useForm from "../../hooks/useForm"
+import useRequestData from "../../hooks/useRequestData"
+import createComment from "../../services/createComment"
 
 
-const CardComment = (props) => {
-    const [comments, setComments] = useState([])
+const CardComment = ({id, updatePage}) => {
+    const [comments, updateComments] = useRequestData([], `${BASE_URL}/posts/${id}/comments`)
     const { form, onChange, cleanFields } = useForm({
         body: ""
     })
 
-
-    useEffect(() => {
-        getPostComments()
-    }, [])
-
-    const getPostComments = async () => {
-        try{
-            const response = await axios.get(`${BASE_URL}/posts/${props.id}/comments`, {
-                headers: {
-                    Authorization: token
-                }
-            })
-
-            setComments(response.data)
-
-        }catch(error){
-            alert("Aconteceu um erro")
-            console.log(error)
-        }
-    }
-
-    const createComment = async (event) => {
+    const onSubmitCreateComment = (event) => {
         event.preventDefault()
-        try{
-            const response = await axios.post(`${BASE_URL}/posts/${props.id}/comments`, form, {
-                headers: {
-                    Authorization: token
-                }
-            })
-            
-            alert("Comentário postado!")
-            cleanFields()
-            props.atualizarPagina()
-            getPostComments()
-            
-        }catch (error){
-
-        }
+        createComment(form,cleanFields,id,updatePage, updateComments)
     }
 
 
@@ -65,7 +30,7 @@ const CardComment = (props) => {
     return (
         <div>
             {listComments}
-            <CreateComment onSubmit={createComment}>
+            <CreateComment onSubmit={onSubmitCreateComment}>
                 <textarea placeholder="Digite um comentário:" value={form.body} name="body" onChange={onChange} />
                 <button>Publicar</button>
             </CreateComment>

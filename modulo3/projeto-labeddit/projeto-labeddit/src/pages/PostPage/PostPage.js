@@ -1,69 +1,36 @@
-import { Card, Header, Footer, Likes, Comments } from "../FeedPage/StyledFeed"
-import like from "../../assets/images/like.svg"
-import dislike from "../../assets/images/dislike.svg"
 import CardComment from "../../components/CardComment/CardComment"
-import { BASE_URL, token } from "../../constants/urls"
+import { BASE_URL} from "../../constants/urls"
 import { useParams } from "react-router-dom"
-import axios from "axios"
-import { useEffect, useState } from "react"
+import useRequestData from "../../hooks/useRequestData"
+import { useHistory } from "react-router-dom"
+import CardPost from "../../components/CardPost/CardPost"
+import useProtectedPage from "../../hooks/useProtectedPage"
+import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 
-const PostPage = (props) => {
+
+const PostPage = () => {
+    useProtectedPage()
+    useUnprotectedPage()
+    const history = useHistory()
     const params = useParams()
     const id = params.id
-    const [posts, setPosts] = useState([])
+    const [posts, updatePosts] = useRequestData([], `${BASE_URL}/posts`)
 
-    useEffect(() => {
-        getPosts()
-    }, [])
+    //----- FILTER PARA PEGAR POST CLICADO
 
-    const getPosts = async () => {
-        try {
-            const response = await axios.get(`${BASE_URL}/posts`, {
-                headers: {
-                    Authorization: token
-                }
-            })
-            setPosts(response.data)
-
-        } catch (error) {
-            alert("Aconteceu um erro!")
-            console.log(error)
-        }
-    }
-
-    const postEscolhido = posts.filter((post) => {
+    const post = posts.filter((post) => {
         return post.id === id
     }).map((post) => {
         return (
-            <Card key={post.id}>
-                <Header>
-                    <p>{post.username}</p>
-                </Header>
-                <div>
-                    <h3>{post.title}</h3>
-                    {post.body}
-                </div>
-                <Footer>
-                    <Likes>
-                        <img src={like} alt="like" />
-
-                        {post.voteSum}
-
-                        <img src={dislike} alt="dislike" />
-                    </Likes>
-                    <Comments>
-                        {post.commentCount > 0 ? <p>{post.commentCount} comentários</p> : <p>0 comentários</p>}
-                    </Comments>
-                </Footer>
-            </Card>
+            <CardPost  id={post.id} username={post.username} title={post.title} body = {post.body} voteSum = {post.voteSum} commentCount = {post.commentCount} history={history}/>
         )
     })
 
     return (
         <div>
             <h1>PostPage</h1>
-            {postEscolhido}
-            <CardComment id={id} atualizarPagina={getPosts} />
+            {post}
+            <CardComment id={id} updatePage={updatePosts} />
 
 
         </div>
