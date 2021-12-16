@@ -1,8 +1,7 @@
-import axios from "axios"
 import { useHistory } from "react-router-dom"
-import { BASE_URL } from "../../constants/urls"
 import useForm from "../../hooks/useForm"
-import { goToFeed, goToCadastre} from "../../routes/coordinator"
+import {goToCadastre} from "../../routes/coordinator"
+import login from "../../services/login"
 
 const LoginPage = (props) => {
     const history = useHistory()
@@ -11,26 +10,18 @@ const LoginPage = (props) => {
         password: ""
     })
 
-    //----- REQUISIÇÃO
-
-    const login = async (event) => {
+    // Chamar requisição de login
+    const onSubmitLogin = (event) => {
         event.preventDefault()
-
-        try {
-            const response = await axios.post(`${BASE_URL}/users/login`, form)
-            localStorage.setItem("token", response.data.token)
-            goToFeed(history)
-
-        } catch (error){
-            alert("Usuário não encontrado. Email ou senha inválido!")
-            cleanFields()
-        }
+        login(form,cleanFields,history)
     }
+
+    
 
     return (
         <div>
             <h1>LoginPage </h1>
-            <form onSubmit={login}>
+            <form onSubmit={onSubmitLogin}>
                 <input type={"email"} name="email" placeholder="Email:" onChange={onChange} value={form.email} required/>
                 <input name="password" placeholder="Senha:" onChange={onChange} value={form.password} required/>
                 <button>Enviar</button>

@@ -1,8 +1,7 @@
-import axios from "axios"
 import { useHistory } from "react-router-dom"
-import { BASE_URL } from '../../constants/urls'
 import useForm from "../../hooks/useForm"
-import { goToFeed } from "../../routes/coordinator"
+import signup from "../../services/signup"
+
 const CadastrePage = () => {
     const history = useHistory()
     const { form, onChange, cleanFields } = useForm({
@@ -11,25 +10,18 @@ const CadastrePage = () => {
         password: ""
     })
 
-    const signup = async (event) => {
-        event.preventDefault()
-        try {
-            const response = await axios.post(`${BASE_URL}/users/signup`, form)
-            localStorage.setItem("token", response.data.token)
-            alert(`Seja bem vindo ${form.username}!`)
-            goToFeed(history)
-        } catch (error) {
-            alert(error.response.data)
-            console.log(error.response.data)
-        }
+    
+    //Chamar requisição de cadastro
 
+    const onSubmitSignUp = (event) => {
+        event.preventDefault()
+        signup(form, history)
     }
 
     return (
         <div>
             <h1>CadastrePage</h1>
-
-            <form onSubmit={signup}>
+            <form onSubmit={onSubmitSignUp}>
                 <input placeholder="Nome de usuário:" name="username" onChange={onChange} value={form.username} required />
                 <input type="email" placeholder="Email:" name="email" onChange={onChange} value={form.email}
                     required />

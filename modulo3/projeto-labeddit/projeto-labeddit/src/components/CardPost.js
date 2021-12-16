@@ -1,39 +1,33 @@
 import { Card, Header, Footer, Likes, Comments} from "../pages/FeedPage/StyledFeed"
 import like from "../assets/images/like.svg"
 import dislike from "../assets/images/dislike.svg"
-import axios from "axios"
-import { BASE_URL } from "../constants/urls"
+import { goToPost } from "../routes/coordinator"
 
-const CardPost = (props) => {
-    const toVote = async () => {
-        try{
-            const response = await axios.post(`${BASE_URL}/posts/${props.idPost}/votes`)
-        }catch (error) {
-
-        }
-    }
+const CardPost = ({id, username, title, body, voteSum, commentCount, history}) => {
 
     return (
-        <Card>
-            <Header>
-                {props.username}
-            </Header>
-            <div>
-                <h3>{props.title}</h3>
-                {props.body}
-            </div>
-            <Footer>
-                <Likes>
-                    <img src={like} alt="like" />
-                    {props.likeCount === 0 ? props.likeCount : <p>0</p>}
-                    <img src={dislike} alt="dislike" />
-                </Likes>
-                <Comments>
-                    {props.commentCount === 0 ? props.commentCount : <p>0</p>} comentários
-                </Comments>
+        <Card key={id} onClick={() => goToPost(history, id)}>
+                <Header>
+                    {username}
+                </Header>
+                <div>
+                    <h3>{title}</h3>
+                    {body}
+                </div>
+                <Footer>
+                    <Likes>
+                        <img src={like} alt="like" />
 
-            </Footer>
-        </Card>
+                        {voteSum}
+
+                        <img src={dislike} alt="dislike"/>
+                    </Likes>
+                    <Comments>
+                        {commentCount > 0 ? <p>{commentCount}</p> : <p>0</p>} comentários
+                    </Comments>
+
+                </Footer>
+            </Card>
     )
 }
 

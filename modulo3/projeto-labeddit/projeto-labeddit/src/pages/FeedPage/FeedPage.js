@@ -1,116 +1,34 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import useForm from "../../hooks/useForm"
-import useProtect from "../../hooks/useProtectPage"
-import { Card, Form, Header, Footer, Likes, Comments } from "./StyledFeed"
-import like from "../../assets/images/like.svg"
-import dislike from "../../assets/images/dislike.svg"
-import { goToPost } from "../../routes/coordinator"
-import { BASE_URL, token } from "../../constants/urls"
+import { Card, Form} from "./StyledFeed"
+import { BASE_URL } from "../../constants/urls"
+import useProtectedPage from "../../hooks/useProtectedPage"
+import useRequestData from "../../hooks/useRequestData"
+import createPost from "../../services/createPost"
+import CardPost from "../../components/CardPost"
 
-const FeedPage = (props) => {
+const FeedPage = () => {
     const history = useHistory()
-    useProtect(history)
-    const [posts, setPosts] = useState([])
+    useProtectedPage()
+    const [posts, atualizarPosts] = useRequestData([], `${BASE_URL}/posts`)
     const { form, onChange, cleanFields } = useForm({
         title: "",
         body: ""
     })
-    useEffect(() => {
-        getPosts()
-    }, [])
 
-    console.log(posts)
+
     // REQUISIÇÕES
 
-    //CRIAR OS POSTS
-
-    const createPost = async (event) => {
+    const onSubmitCreatePost = (event) => {
         event.preventDefault()
-        try {
-            const response = await axios.post(`${BASE_URL}/posts`, form, {
-                headers: {
-                    Authorization: token
-                }
-            })
-
-            alert("Post criado com sucesso!")
-            getPosts()
-            cleanFields()
-        } catch (error) {
-            alert("Aconteceu um erro!")
-            console.log(error.response)
-        }
+        createPost(form, cleanFields, atualizarPosts)
     }
+    
 
-    //PEGAR OS POSTS
-
-    const getPosts = async () => {
-        try{
-            const response = await axios.get(`${BASE_URL}/posts`, {
-                headers: {
-                    Authorization: token
-                }
-            })
-            setPosts(response.data)
-
-        }catch(error){
-            alert("Aconteceu um erro!")
-            console.log(error)
-        }
-    }
-
-
-    const toVote = async (id, direction) => {
-
-
-        const body = {
-            direction: direction
-        }
-
-        try {
-            const response = await axios.post(`${BASE_URL}/posts/${id}/votes`, body, {
-                headers: {
-                    Authorization: token
-                }
-            })
-
-            console.log(response)
-            getPosts()
-
-        } catch (error) {
-            alert("Aconteceu um erro!")
-            console.log(error.response)
-        }
-    }
-
-
-    // ------------------------------------- 
+    // MAPS
     const listPosts = posts.map((post) => {
         return (
-            <Card key={post.id} onClick={() => goToPost(history, post.id)}>
-                <Header>
-                    {post.username}
-                </Header>
-                <div>
-                    <h3>{post.title}</h3>
-                    {post.body}
-                </div>
-                <Footer>
-                    <Likes>
-                        <img src={like} alt="like" onClick={() => toVote(post.id, 1)} />
-
-                        {post.voteSum}
-
-                        <img src={dislike} alt="dislike" onClick={() => toVote(post.id, -1)} />
-                    </Likes>
-                    <Comments>
-                        {post.commentCount > 0 ? <p>{post.commentCount}</p> : <p>0</p>} comentários
-                    </Comments>
-
-                </Footer>
-            </Card>
+            <CardPost  id={post.id} username={post.username} title={post.title} body = {post.body} voteSum = {post.voteSum} commentCount = {post.commentCount} history={history}/>
         )
     })
 
@@ -118,7 +36,7 @@ const FeedPage = (props) => {
         <div>
             <h1>FeedPage</h1>
             <Card>
-                <Form onSubmit={createPost}>
+                <Form onSubmit={onSubmitCreatePost}>
                     <input placeholder="Título da postagem:" name="title" value={form.title} onChange={onChange} />
                     <textarea placeholder="Escreva o que você está pensando:" name="body" value={form.body} onChange={onChange} />
                     <button>Enviar</button>
