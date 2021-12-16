@@ -21,6 +21,7 @@ const FeedPage = (props) => {
         getPosts()
     }, [])
 
+    console.log(posts)
     // REQUISIÇÕES
 
     //CRIAR OS POSTS
@@ -105,7 +106,7 @@ const FeedPage = (props) => {
                         <img src={dislike} alt="dislike" onClick={() => toVote(post.id, -1)} />
                     </Likes>
                     <Comments>
-                        {post.commentCount === 0 ? post.commentCount : <p>0</p>} comentários
+                        {post.commentCount > 0 ? <p>{post.commentCount}</p> : <p>0</p>} comentários
                     </Comments>
 
                 </Footer>

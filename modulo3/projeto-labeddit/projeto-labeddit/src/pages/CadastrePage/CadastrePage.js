@@ -12,7 +12,6 @@ const CadastrePage = () => {
     })
 
     const signup = async (event) => {
-
         event.preventDefault()
         try {
             const response = await axios.post(`${BASE_URL}/users/signup`, form)
