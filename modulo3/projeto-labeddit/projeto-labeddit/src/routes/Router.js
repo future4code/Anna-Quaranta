@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Header from "../components/Header/Header";
 import CadastrePage from "../pages/CadastrePage/CadastrePage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import FeedPage from "../pages/FeedPage/FeedPage";
@@ -9,23 +10,24 @@ const Router = () => {
 
     return (
         <BrowserRouter>
+            <Header />
             <Switch>
                 <Route exact path="/">
-                    <FeedPage/>
+                    <FeedPage />
                 </Route>
 
                 <Route exact path="/login">
-                    <LoginPage/>
+                    <LoginPage />
                 </Route>
 
                 <Route exact path="/cadastrar">
-                    <CadastrePage/>
+                    <CadastrePage />
                 </Route>
                 <Route exact path="/post/:id">
-                    <PostPage/>
+                    <PostPage />
                 </Route>
                 <Route>
-                    <ErrorPage/>
+                    <ErrorPage />
                 </Route>
             </Switch>
         </BrowserRouter>

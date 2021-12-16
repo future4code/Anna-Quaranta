@@ -1,6 +1,12 @@
 import { useHistory } from "react-router-dom"
 import useForm from "../../hooks/useForm"
 import signup from "../../services/signup"
+import {Central,Form, Buttons} from "../LoginPage/StyledLogin"
+import {Container, Inputs} from "./StyledCadastre"
+import { Button, TextField } from "@material-ui/core"
+import cadastre from "../../assets/images/cadastre.svg"
+
+
 
 const CadastrePage = () => {
     const history = useHistory()
@@ -10,34 +16,64 @@ const CadastrePage = () => {
         password: ""
     })
 
-    
 
-    
+
+
     //Chamar requisição de cadastro
 
     const onSubmitSignUp = (event) => {
         event.preventDefault()
-        signup(form, history)
+        signup(form, history, cleanFields)
     }
 
     return (
-        <div>
-            <h1>CadastrePage</h1>
-            <form onSubmit={onSubmitSignUp}>
-                <input placeholder="Nome de usuário:" name="username" onChange={onChange} value={form.username} required />
-                <input type="email" placeholder="Email:" name="email" onChange={onChange} value={form.email}
-                    required />
-                <input type="password" placeholder="Senha:" name="password" onChange={onChange} value={form.password} required />
-                <button>Cadastrar</button>
-            </form>
+        <Container>
+            <Central>
+                <img src={cadastre} alt="imagem de uma garota de pernas cruzadas em cima de um chat bagunçado"/>
+                <h2>CadastrePage</h2>
+                <Form onSubmit={onSubmitSignUp}>
+                    <Inputs>
+                        <TextField
+                            label="Nome de usuário"
+                            variant="outlined"
+                            name="username"
+                            onChange={onChange}
+                            value={form.username}
+                            required
+                        />
 
-            <div>
-                <button>FeedPage</button>
-                <button>LoginPage</button>
-                <button>CadastrePage</button>
-                <button>PostPage</button>
-            </div>
-        </div>
+                        <TextField
+                            label="Email"
+                            variant="outlined"
+                            type={"email"}
+                            name="email"
+                            onChange={onChange}
+                            value={form.email}
+                            required
+                        />
+
+
+                        <TextField
+                            label="Password"
+                            type="password"
+                            autoComplete="current-password"
+                            name="password"
+                            onChange={onChange}
+                            value={form.password}
+                            required
+                            variant="outlined"
+                        />
+                    </Inputs>
+
+                    <Buttons>
+                        <Button type={"submit"} variant="contained" color="primary">
+                            Cadastrar
+                        </Button>
+                    </Buttons>
+                </Form>
+
+            </Central>
+        </Container>
     )
 }
 

@@ -1,9 +1,13 @@
 import { useHistory } from "react-router-dom"
+import { goToCadastre } from "../../routes/coordinator"
+import { Buttons, Central, Container, Form, Inputs } from "./StyledLogin"
+import loginImage from "../../assets/images/loginImage.svg"
+import { Button, TextField } from "@material-ui/core"
 import useForm from "../../hooks/useForm"
-import {goToCadastre} from "../../routes/coordinator"
 import login from "../../services/login"
 
-const LoginPage = (props) => {
+
+const LoginPage = () => {
     const history = useHistory()
     const { form, onChange, cleanFields } = useForm({
         email: "",
@@ -13,28 +17,50 @@ const LoginPage = (props) => {
     // Chamar requisição de login
     const onSubmitLogin = (event) => {
         event.preventDefault()
-        login(form,cleanFields,history)
+        login(form, cleanFields, history)
     }
 
-    
+    console.log(form)
 
     return (
-        <div>
-            <h1>LoginPage </h1>
-            <form onSubmit={onSubmitLogin}>
-                <input type={"email"} name="email" placeholder="Email:" onChange={onChange} value={form.email} required/>
-                <input name="password" placeholder="Senha:" onChange={onChange} value={form.password} required/>
-                <button>Enviar</button>
-                <button onClick={() => goToCadastre(history)}>Cadastrar</button>
-            </form>
+        <Container>
+            <Central>
+                <img src={loginImage} alt="imagem de uma pessoa em uma porta" />
+                <h2>Login</h2>
+                <Form onSubmit={onSubmitLogin}>
+                    <Inputs>
+                        <TextField
+                            label="Email"
+                            variant="outlined"
+                            type={"email"}
+                            name="email"
+                            onChange={onChange}
+                            value={form.email}
+                            required
+                        />
+                        <TextField
+                            label="Password"
+                            type="password"
+                            autoComplete="current-password"
+                            name="password"
+                            onChange={onChange}
+                            value={form.password}
+                            required
+                            variant="outlined"
+                        />
+                    </Inputs>
 
-            <div>
-                <button>FeedPage</button>
-                <button>LoginPage</button>
-                <button>CadastrePage</button>
-                <button>PostPage</button>
-            </div>
-        </div>
+                    <Buttons>
+                        <Button type={"submit"} variant="contained" color="primary">
+                            Entrar
+                        </Button>
+
+                        <Button color="secondary" onClick={() => goToCadastre(history)}>Não possui conta? Cadastre-se</Button>
+                    </Buttons>
+
+                </Form>
+            </Central>
+        </Container>
     )
 }
 

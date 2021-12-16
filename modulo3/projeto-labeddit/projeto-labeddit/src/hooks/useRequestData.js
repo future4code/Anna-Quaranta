@@ -4,7 +4,7 @@ import { TOKEN } from "../constants/urls"
 
 const useRequestData = (initialData, url) => {
     const [data, setData] = useState(initialData)
-
+    console.log(TOKEN)
     useEffect(() => {
         requestGet()
     }, [url])

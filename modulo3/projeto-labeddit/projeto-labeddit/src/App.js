@@ -1,23 +1,19 @@
 import Router from "./routes/Router";
-import { createGlobalStyle } from 'styled-components';
+import { ThemeProvider } from "@material-ui/core";
+import theme from "./constants/theme";
+import { Container, GlobalStyle } from "./styledApp";
 
-const GlobalStyle = createGlobalStyle`
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 
-    button{
-      cursor: pointer;
-    }
-  }
-`;
+
 const App = () => {
   return (
-    <div>
+    <Container>
       <GlobalStyle />
-      <Router />
-    </div>
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+    </Container>
+
   )
 }
 
