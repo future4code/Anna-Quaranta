@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { token } from "../constants/urls"
+import { TOKEN } from "../constants/urls"
 
 const useRequestData = (initialData, url) => {
     const [data, setData] = useState(initialData)
@@ -12,7 +12,7 @@ const useRequestData = (initialData, url) => {
     const requestGet = async () => {
         axios.get(url, {
             headers: {
-                Authorization: token
+                Authorization: TOKEN
             }
         }).then((response) => {
             setData(response.data)

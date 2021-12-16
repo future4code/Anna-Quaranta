@@ -1,12 +1,12 @@
 import { useLayoutEffect } from "react"
 import { useHistory } from "react-router-dom"
-import { token } from "../constants/urls"
+import { TOKEN } from "../constants/urls"
 import { goToLogin } from "../routes/coordinator"
 
 const useProtectedPage = () => {
     const history = useHistory()
     useLayoutEffect(() => {
-        if (!token) {
+        if (!TOKEN) {
             goToLogin(history)
         }
     }, [history])

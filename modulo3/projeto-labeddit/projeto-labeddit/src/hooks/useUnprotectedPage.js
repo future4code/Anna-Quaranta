@@ -1,12 +1,12 @@
 import { useLayoutEffect } from "react"
 import { useHistory } from "react-router-dom"
-import { token } from "../constants/urls"
+import { TOKEN } from "../constants/urls"
 import { goToFeed } from "../routes/coordinator"
 
 const useUnprotectedPage = () => {
     const history = useHistory()
     useLayoutEffect(() => {
-        if (token) {
+        if (TOKEN) {
             goToFeed(history)
         }
     }, [history])

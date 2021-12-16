@@ -9,8 +9,8 @@ import CardPost from "../../components/CardPost/CardPost"
 import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 
 const FeedPage = () => {
-    useProtectedPage()
-    useUnprotectedPage()
+    // useProtectedPage()
+    // useUnprotectedPage()
     const history = useHistory()
     const [posts, atualizarPosts] = useRequestData([], `${BASE_URL}/posts`)
     const { form, onChange, cleanFields } = useForm({
@@ -30,7 +30,7 @@ const FeedPage = () => {
     // MAPS
     const listPosts = posts.map((post) => {
         return (
-            <CardPost  id={post.id} username={post.username} title={post.title} body = {post.body} voteSum = {post.voteSum} commentCount = {post.commentCount} history={history}/>
+            <CardPost  key={post.id} id={post.id} username={post.username} title={post.title} body = {post.body} voteSum = {post.voteSum} commentCount = {post.commentCount} history={history}/>
         )
     })
 

@@ -1,12 +1,12 @@
 import axios from "axios"
-import { BASE_URL, token } from "../constants/urls"
+import { BASE_URL, TOKEN } from "../constants/urls"
 
 
 const createComment = async (body, cleanFields, id, updatePage, updateComments) => {
     try {
         const response = await axios.post(`${BASE_URL}/posts/${id}/comments`, body, {
             headers: {
-                Authorization: token
+                Authorization: TOKEN
             }
         })
         

@@ -9,8 +9,8 @@ import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 
 
 const PostPage = () => {
-    useProtectedPage()
-    useUnprotectedPage()
+    // useProtectedPage()
+    // useUnprotectedPage()
     const history = useHistory()
     const params = useParams()
     const id = params.id
