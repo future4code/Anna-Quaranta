@@ -6,7 +6,9 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: lightgrey;
 `
+
 export const Header = styled.div`
     border: 1px solid black;
     display: flex;

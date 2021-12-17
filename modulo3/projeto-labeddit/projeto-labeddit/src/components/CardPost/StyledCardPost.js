@@ -1,59 +1,56 @@
-import { CardContent, CardHeader } from "@material-ui/core";
 import styled from "styled-components";
 
-
-export const Container = styled.div`
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
 export const Card = styled.div`
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 30vw;
+    width: 40vw;
     height: 25vw;
-);
+    margin: 2vw;
+    border-radius: 2vw;
 `
 
-export const Form = styled.form`
-    width: 100%;
-    height: 100%;
-
-    input{
-        width: 100%;
-        height: 15%;
-    }
-    textarea{
-        resize: none;
-        width: 100%;
-        height: 75%;
-    }
-
-    button{
-        width: 100%;
-        height: 10%;
-        border:none;
-    }
-`
 export const Header = styled.div`
-    border: 1px solid black;
     display: flex;
     align-items: center;
+    border: 2px solid blue;
+    border-radius: 2vw 2vw 0 0;
     padding: 0.5vw;
-    height: 10%;
+    height: 15%;
+    font-weight: bold;
+    background: #42a5f5;
+    font-size: 1.5vw;
 
+    img{
+        width: 2.5vw;
+        margin: 0.5vw;
+    }
+
+
+`
+
+export const Body = styled.div`
+    background-color: white;
+    height: 70%;
+    padding: 1vw;
+
+    h3{
+        font-size: 2.5vw;
+        margin-bottom: 1vw;
+    }
 `
 
 export const Footer = styled.div`
-    border: 1px solid black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 2px solid blue;
+    border-radius: 0 0 2vw 2vw;
     padding: 0.5vw;
+    height: 15%;
+    background: #42a5f5;
+    padding-right: 2vw;
+    
 
     img{
         cursor: pointer;
@@ -66,9 +63,16 @@ export const Likes = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 20%;
+    font-size: 1.5vw;
+    font-weight: bold;
 `
 
 export const Comments = styled.div`
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 3vw;
+    font-size: 1.5vw;
+    font-weight: bold;
     
 `
