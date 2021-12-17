@@ -1,8 +1,10 @@
+import { Button, TextField } from "@material-ui/core"
 import { BASE_URL } from "../../constants/urls"
 import useForm from "../../hooks/useForm"
 import useRequestData from "../../hooks/useRequestData"
 import createPost from "../../services/createPost"
-import { Card, Form } from "./StyledCreatePost"
+import {Form } from "./StyledCreatePost"
+import post from "../../assets/images/post.svg"
 
 
 const CreatePost = () => {
@@ -19,13 +21,13 @@ const CreatePost = () => {
         createPost(form, cleanFields, atualizarPosts)
     }
     return (
-        <Card>
-            <Form onSubmit={onSubmitCreatePost}>
-                <input placeholder="Título da postagem:" name="title" value={form.title} onChange={onChange} />
-                <textarea placeholder="Escreva o que você está pensando:" name="body" value={form.body} onChange={onChange} />
-                <button>Enviar</button>
-            </Form>
-        </Card>
+        <Form onSubmit={onSubmitCreatePost}>
+            <img src={post} alt="Imagem de uma garota adicionando um post no mural"/>
+            <h2>Criar Post</h2>
+            <input placeholder="Título da postagem:" name="title" value={form.title} onChange={onChange} fullWidth />
+            <textarea placeholder="No que você está pensando?" name="body" value={form.body} onChange={onChange} />
+            <Button variant="contained" color={"primary"} type="submit">Enviar</Button>
+        </Form>
     )
 }
 

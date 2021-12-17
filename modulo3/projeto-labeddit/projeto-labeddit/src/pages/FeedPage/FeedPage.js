@@ -1,19 +1,21 @@
-import { Container} from "./StyledFeed"
-import useProtectedPage from "../../hooks/useProtectedPage"
-import useUnprotectedPage from "../../hooks/useUnprotectedPage"
-import CreatePost from "../../components/CreatePost/CreatePost"
+import { Container, ContainerTop } from "./StyledFeed"
 import GetPosts from "../../components/GetPosts/GetPosts"
-
+import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
+import { MyInput } from "./StyledFeed";
+import { goToCreatePost } from "../../routes/coordinator";
+import { useHistory } from "react-router-dom";
 
 const FeedPage = () => {
-    // useProtectedPage()
-    // useUnprotectedPage()
-  
-    
+    const history = useHistory()
+
     return (
         <Container>
-            <CreatePost/>
-            <GetPosts/>
+            {/* <CreatePost/> */}
+            <ContainerTop>
+                <AccountCircleRoundedIcon style={{ fontSize: 40 }} />
+                <MyInput placeholder="Postar" variant="filled" onClick={() => goToCreatePost(history)} />
+            </ContainerTop>
+            <GetPosts />
         </Container>
     )
 }

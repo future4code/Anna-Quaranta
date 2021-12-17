@@ -2,6 +2,10 @@ export const goToFeed = (history) => {
     history.push("/")
 }
 
+export const goToCreatePost = (history) => {
+    history.push("/criarPost")
+}
+
 export const goToLogin = (history) => {
     history.push("/login")
 }

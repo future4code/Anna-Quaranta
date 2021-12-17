@@ -20,6 +20,7 @@ export const Central = styled.div`
     justify-content: space-around;
     width: 35vw;
     height: 45vw;
+    margin-bottom: 3vw;
 
     h2{
         font-size: 3vw;

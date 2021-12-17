@@ -1,26 +1,42 @@
 import styled from "styled-components";
 
-export const Card = styled.div`
-    border: 1px solid red;
+export const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 40vw;
-    height: 25vw;
-`
-
-export const Form = styled.form`
+    align-items: center;
+    font-size: 2vw;
     width: 100%;
     height: 100%;
 
+    img{
+        width: 20vw;
+        
+    }
+
     input{
         width: 100%;
-        height: 15%;
+        height: 8%;
+        padding: 1vw;
+        font-size: 1.5vw;
+
+        &:focus{
+            outline: none;
+            border: 2px solid #42a5f5;
+        }
     }
+
     textarea{
         resize: none;
         width: 100%;
-        height: 75%;
+        height: 30%;
+        padding: 1vw;
+        font-size: 1.2vw;
+
+        &:focus{
+            outline: none;
+            border: 2px solid #42a5f5;
+        }
     }
 
     button{
@@ -28,4 +44,6 @@ export const Form = styled.form`
         height: 10%;
         border:none;
     }
+
+
 `

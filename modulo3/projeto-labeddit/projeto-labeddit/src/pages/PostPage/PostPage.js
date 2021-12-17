@@ -4,13 +4,10 @@ import { useParams } from "react-router-dom"
 import useRequestData from "../../hooks/useRequestData"
 import { useHistory } from "react-router-dom"
 import CardPost from "../../components/CardPost/CardPost"
-import useProtectedPage from "../../hooks/useProtectedPage"
-import useUnprotectedPage from "../../hooks/useUnprotectedPage"
+
 
 
 const PostPage = () => {
-    // useProtectedPage()
-    // useUnprotectedPage()
     const history = useHistory()
     const params = useParams()
     const id = params.id
@@ -28,7 +25,6 @@ const PostPage = () => {
 
     return (
         <div>
-            <h1>PostPage</h1>
             {post}
             <CardComment id={id} updatePage={updatePosts} />
 
