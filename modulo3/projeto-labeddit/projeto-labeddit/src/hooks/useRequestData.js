@@ -4,7 +4,6 @@ import { TOKEN } from "../constants/urls"
 
 const useRequestData = (initialData, url) => {
     const [data, setData] = useState(initialData)
-    console.log(TOKEN)
     useEffect(() => {
         requestGet()
     }, [url])
@@ -17,8 +16,7 @@ const useRequestData = (initialData, url) => {
         }).then((response) => {
             setData(response.data)
         }).catch((error) => {
-            console.log(error)
-            alert("Ocorreu um erro, tente novamente!")
+            alert(error.response.data.message)
         })
     }
 

@@ -1,11 +1,12 @@
 import { BASE_URL } from "../../constants/urls"
-import { Container, CreateComment } from "./StyledComment"
+import { Container, ContainerPai, CreateComment } from "./StyledComment"
 import useForm from "../../hooks/useForm"
 import useRequestData from "../../hooks/useRequestData"
 import createComment from "../../services/createComment"
+import { Send } from "@material-ui/icons"
 
 
-const CardComment = ({id, updatePage}) => {
+const CardComment = ({ id, updatePage }) => {
     const [comments, updateComments] = useRequestData([], `${BASE_URL}/posts/${id}/comments`)
     const { form, onChange, cleanFields } = useForm({
         body: ""
@@ -13,7 +14,7 @@ const CardComment = ({id, updatePage}) => {
 
     const onSubmitCreateComment = (event) => {
         event.preventDefault()
-        createComment(form,cleanFields,id,updatePage, updateComments)
+        createComment(form, cleanFields, id, updatePage, updateComments)
     }
 
 
@@ -28,14 +29,18 @@ const CardComment = ({id, updatePage}) => {
     })
 
     return (
-        <div>
+        <ContainerPai>
+
             {listComments}
+
             <CreateComment onSubmit={onSubmitCreateComment}>
+
                 <textarea placeholder="Digite um comentário:" value={form.body} name="body" onChange={onChange} />
-                <button>Publicar</button>
+                <button type="submit"><Send /></button>
+
             </CreateComment>
 
-        </div>
+        </ContainerPai>
 
     )
 }

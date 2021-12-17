@@ -3,11 +3,16 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: lightgrey;
+    min-height: 89.7vh;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        min-height: 91.6vh;
+     
+    }
 `
 
 export const ContainerTop = styled.div`
@@ -19,6 +24,11 @@ export const ContainerTop = styled.div`
     height: 5vw;
     margin: 2vw;
     padding: 0.5vw;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        width: 85vw;
+        height: 20vw;
+    }   
 `
 
 export const MyInput = styled(TextField)({
@@ -30,35 +40,4 @@ export const MyInput = styled(TextField)({
 
 });
 
-// export const Header = styled.div`
-//     border: 1px solid black;
-//     display: flex;
-//     align-items: center;
-//     padding: 0.5vw;
-//     height: 10%;
 
-// `
-// export const Footer = styled.div`
-//     border: 1px solid black;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     padding: 0.5vw;
-
-//     img{
-//         cursor: pointer;
-//     }
-
-// `
-
-export const Likes = styled.div`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 20%;
-`
-
-export const Comments = styled.div`
-    display: flex;
-    
-`

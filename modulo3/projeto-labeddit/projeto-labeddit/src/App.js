@@ -3,8 +3,6 @@ import { ThemeProvider } from "@material-ui/core";
 import theme from "./constants/theme";
 import { Container, GlobalStyle } from "./styledApp";
 
-
-
 const App = () => {
   return (
     <Container>

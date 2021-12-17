@@ -4,14 +4,12 @@ export const Card = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 40vw;
+    width: 50vw;
     height: 25vw;
-    margin: 2vw;
-    border-radius: 2vw;
 
     @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
         width: 90%;
-        height: 60vw;
+        height: 50vh;
     }
 `
 
@@ -19,7 +17,6 @@ export const Header = styled.div`
     display: flex;
     align-items: center;
     border: 2px solid blue;
-    border-radius: 2vw 2vw 0 0;
     padding: 0.5vw;
     height: 15%;
     font-weight: bold;
@@ -32,11 +29,11 @@ export const Header = styled.div`
     }
 
     @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
-        font-size: 6vw;
-        height: 20%;
+        height: 25%;
+        font-size: 8vw;
 
         img{
-            width: 6vw;
+            width: 10vw;
         }
     }
 
@@ -44,9 +41,8 @@ export const Header = styled.div`
 
 export const Body = styled.div`
     background-color: white;
-    height: 70%;
+    min-height: 70%;
     padding: 1vw;
-    word-break: break-all;
 
     h3{
         font-size: 2.5vw;
@@ -54,8 +50,10 @@ export const Body = styled.div`
     }
 
     @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        min-height: 30vh;
+        padding: 2vws;
         font-size: 5vw;
-        
+
         h3{
             font-size: 7vw;
         }
@@ -67,15 +65,16 @@ export const Footer = styled.div`
     justify-content: space-between;
     align-items: center;
     border: 2px solid blue;
-    border-radius: 0 0 2vw 2vw;
-    padding: 0.5vw 2.5vw 0.5vw 0.5vw;
+    padding: 0.5vw;
     height: 15%;
     background: #42a5f5;
+    padding-right: 2vw;
+    
 
     img{
         cursor: pointer;
     }
-
+    
     @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
         height: 20%;
     
@@ -94,7 +93,6 @@ export const Likes = styled.div`
     @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
         width: 30%;
         font-size: 4vw;
-     
     }
 `
 
@@ -110,5 +108,6 @@ export const Comments = styled.div`
         width: 15%;
         font-size: 4vw;
     }
+    
     
 `

@@ -45,5 +45,19 @@ export const Form = styled.form`
         border:none;
     }
 
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        padding: 1vw;
+
+       img{
+           width: 70%;
+       }
+
+       input,textarea{
+           font-size: 5vw;
+       }
+
+       font-size: 8vw;
+     
+    }
 
 `

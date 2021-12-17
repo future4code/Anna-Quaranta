@@ -2,20 +2,21 @@ import axios from "axios"
 import { BASE_URL, TOKEN } from "../constants/urls"
 
 
-const createPost = async (body, cleanFields, atualizarPosts) => {
+const createPost = async (body, cleanFields, atualizarPosts, setIsLoading) => {
+    setIsLoading(true)
     try {
         const response = await axios.post(`${BASE_URL}/posts`, body, {
             headers: {
                 Authorization: TOKEN
             }
         })
-
-        alert("Post criado com sucesso!")
+        setIsLoading(false)
         atualizarPosts()
+        alert("Post criado com sucesso!")
         cleanFields()
     } catch (error) {
-        alert("Aconteceu um erro!")
-        console.log(error.response)
+        setIsLoading(false)
+        alert(error.response.data.message)
     }
 }
 

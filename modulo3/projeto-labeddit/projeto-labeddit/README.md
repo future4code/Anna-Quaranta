@@ -18,10 +18,11 @@ Cliente: Faça seu login/cadastro e acesse o feed principal, onde poderá ver as
 * API Labbedit
 
 ### Imagens:
-![image](https://media.discordapp.net/attachments/921261225747292221/921261817957871616/unknown.png?width=1010&height=468)
+![image](https://media.discordapp.net/attachments/921261225747292221/921490934204604416/unknown.png?width=1025&height=466)
 ![image](https://media.discordapp.net/attachments/921261225747292221/921261914686914580/unknown.png?width=1010&height=468)
 ![image](https://media.discordapp.net/attachments/921261225747292221/921262164268970004/unknown.png?width=1014&height=468)
 ![image](https://media.discordapp.net/attachments/921261225747292221/921263367346335785/unknown.png?width=1025&height=465)
 
 ### Responsivo para celular: 
 
+'

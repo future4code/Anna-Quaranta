@@ -1,15 +1,23 @@
-import { TextField } from "@material-ui/core";
 import styled from "styled-components";
 
 export const Container = styled.div`
-    border: 1px solid black;
     display: flex;
     justify-content: center;
     width: 100%;
     height: auto;
+    background-color: lightgray;
 
     img{
         width: 80%;
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        height: 95%;
+        align-items: center;
+
+        img{
+            width: 70vw;
+        }
     }
 `
 
@@ -29,27 +37,17 @@ export const Central = styled.div`
     img{
         margin-top: 4vw;
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        justify-content: space-between;
+        width: 80%;
+        height: 90%;
+
+        h2{
+            font-size: 10vw;
+            margin: 0;
+        }
+    }
 `
 
-export const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 75%;
-`
 
-export const Inputs = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 10vw;
-    margin-bottom: 1vw;
-
-`
-
-export const Buttons = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 6vw;
-`

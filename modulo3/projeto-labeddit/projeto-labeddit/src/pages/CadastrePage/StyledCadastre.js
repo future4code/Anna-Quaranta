@@ -2,22 +2,23 @@ import styled from "styled-components"
 
 
 export const Container = styled.div`
-    border: 1px solid black;
     display: flex;
     justify-content: center;
+    background-color: lightgray;
     width: 100%;
     height: auto;
 
     img{
         width: 60%;
     }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        align-items: center;
+        height: 95%;
+        
+        img{
+            width: 70vw;
+        }
+    }
 `
 
-export const Inputs = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 15vw;
-    margin-bottom: 1vw;
-
-`

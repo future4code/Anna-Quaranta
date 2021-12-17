@@ -10,15 +10,13 @@ const createComment = async (body, cleanFields, id, updatePage, updateComments) 
             }
         })
         
-        alert("Comentário postado!")
-        cleanFields()
         updatePage()
         updateComments()
-
+        alert("Comentário postado!")
+        cleanFields()
+    
     } catch (error) {
-        alert("Ocorreu um erro! Tente novamente!")
-        console.log(error.response)
-
+        alert(error.response.data.message)
     }
 }
 

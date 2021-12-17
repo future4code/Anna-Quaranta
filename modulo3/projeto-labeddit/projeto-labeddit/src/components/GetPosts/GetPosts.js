@@ -2,6 +2,7 @@ import { BASE_URL } from "../../constants/urls"
 import useRequestData from "../../hooks/useRequestData"
 import CardPost from "../../components/CardPost/CardPost"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import Loading from "../Loading/Loading"
 
 const GetPosts = () => {
     const history = useHistory()
@@ -15,9 +16,9 @@ const GetPosts = () => {
     })
 
     return (
-        <div>
-            {listPosts}
-        </div>
+        <>
+            {listPosts.length > 0 ? listPosts : <Loading />}
+        </>
     )
 }
 

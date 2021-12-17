@@ -11,7 +11,7 @@ const Router = () => {
 
     return (
         <BrowserRouter>
-            <Header />
+            <Header/>
             <Switch>
                 <Route exact path="/">
                     <FeedPage />
@@ -32,7 +32,7 @@ const Router = () => {
                     <PostPage />
                 </Route>
                 <Route>
-                    <ErrorPage />
+                    <ErrorPage exact={"/error"}/>
                 </Route>
             </Switch>
         </BrowserRouter>
