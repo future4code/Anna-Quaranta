@@ -9,7 +9,7 @@ const CadastrePage = () => {
         <Container>
             <Central>
                 <img src={cadastre} alt="imagem de uma garota de pernas cruzadas em cima de um chat bagunçado"/>
-                <h2>CadastrePage</h2>
+                <h2>Cadastre-se</h2>
                <CadastreForm/>
             </Central>
         </Container>
