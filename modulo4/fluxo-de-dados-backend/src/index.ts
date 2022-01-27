@@ -1,4 +1,4 @@
-import { cart } from './data';
+import { products } from './data';
 import express, { Request, Response } from "express"
 import { AddressInfo } from "net"
 
@@ -25,20 +25,38 @@ app.get('/test', (req: Request, res: Response) => {
     res.status(200).send("API está funcional.")
 })
 
-app.get('/carrinho', (req: Request, res: Response) => {
+app.get('/products', (req: Request, res: Response) => {
+
+    const search = req.query.name
 
     try {
-        res.status(200).send({
-            carrinho: {
-                livros: cart
-            }
-        })
+
+        if (!search) {
+            res.status(200).send({
+                products: {
+                    books: products
+                }
+            })
+
+        } else {
+
+            const filteredBooks = products.filter((product) => {
+                return product.name.toUpperCase().includes(search.toString().toUpperCase())
+            })
+
+            res.status(200).send({
+                products: {
+                    search: search,
+                    result: filteredBooks
+                }
+            })
+        }
     } catch (error) {
-        res.status(500).send("Internal Server Error")
+        res.statusCode = 500
     }
 })
 
-app.post('/carrinho', (req: Request, res: Response) => {
+app.post('/products', (req: Request, res: Response) => {
     const { name, price } = req.body
 
     try {
@@ -58,14 +76,12 @@ app.post('/carrinho', (req: Request, res: Response) => {
         }
 
         if (typeof (price) !== "number") {
-            throw new Error("Parâmetro price não é um number!")
+            throw new Error("Parâmetro price não é um number.")
         }
 
-
-
-        cart.forEach((product) => {
+        products.forEach((product) => {
             if (product.name.toUpperCase() === name.toUpperCase()) {
-                throw new Error("Esse livro já existe no seu carrinho!")
+                throw new Error("Esse livro já existe no seu carrinho.")
             }
         })
 
@@ -77,8 +93,12 @@ app.post('/carrinho', (req: Request, res: Response) => {
             price: req.body.price
         }
 
-        cart.push(newProduct)
-        res.status(201).send(cart)
+        products.push(newProduct)
+        res.status(201).send({
+            products: {
+                books: products
+            }
+        })
 
     } catch (error: any) {
 
@@ -86,7 +106,7 @@ app.post('/carrinho', (req: Request, res: Response) => {
 
             res.statusCode = 500
 
-        } else if (error.message === "Esse livro já existe no seu carrinho!") {
+        } else if (error.message === "Esse livro já existe no seu carrinho.") {
 
             res.statusCode = 409
 
@@ -100,42 +120,66 @@ app.post('/carrinho', (req: Request, res: Response) => {
     }
 })
 
-app.put('/carrinho/:id', (req: Request, res: Response) => {
+app.put('/products/:id', (req: Request, res: Response) => {
     const id: string = req.params.id
+    const name: string = req.body.name
     const price: number = req.body.price
 
     try {
 
         //VERIFICAÇÕES
-        const index = cart.findIndex(product => product.id === id)
+        const index = products.findIndex(product => product.id === id)
 
         if (index === -1) {
             throw new Error("Esse id não existe.")
         }
 
-        if (!price) {
+        if (!name && !price) {
             throw new Error("Body não enviado.")
         }
 
-        if (typeof (price) !== "number") {
+        if (price !== undefined && typeof (price) !== "number") {
             throw new Error("Parâmetro price não é um number!")
         }
 
-        if (price <= 0) {
+        if (name !== undefined && typeof (name) !== "string") {
+            throw new Error("Parâmetro name não é uma string!")
+        }
+
+        if (price !== undefined && price <= 0) {
             throw new Error("Price é menor ou igual a 0. Valor inválido.")
         }
 
         //----------------------------
 
-        cart.forEach((product) => {
-            if (product.id === id) {
-                product.price = price
-            }
-        })
+        if (name && price) {
+            products.forEach((product) => {
+                if (product.id === id) {
+                    product.name = name
+                    product.price = price
+                }
+            })
+        }
+
+        if (!price && name) {
+            products.forEach((product) => {
+                if (product.id === id) {
+                    product.name = name
+                }
+            })
+        }
+
+        if (!name && price) {
+            products.forEach((product) => {
+                if (product.id === id) {
+                    product.price = price
+                }
+            })
+        }
 
         res.status(200).send({
-            carrinho: {
-                livros: cart
+            products: {
+                books: products
             }
         })
 
@@ -154,19 +198,19 @@ app.put('/carrinho/:id', (req: Request, res: Response) => {
     }
 })
 
-app.delete('/carrinho/:id', (req: Request, res: Response) => {
+app.delete('/products/:id', (req: Request, res: Response) => {
     const id: string = req.params.id
 
     try {
-        const index = cart.findIndex(product => product.id === id)
+        const index = products.findIndex(product => product.id === id)
 
         if (index === -1) {
             throw new Error("Esse id não existe.")
         } else {
-            cart.splice(index, 1)
+            products.splice(index, 1)
             res.status(200).send({
-                carrinho: {
-                    livros: cart
+                products: {
+                    books: products
                 }
             })
         }

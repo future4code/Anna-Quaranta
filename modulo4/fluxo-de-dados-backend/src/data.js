@@ -1,4 +1,4 @@
-export const cart = [
+export const products = [
     {
         id: "1643215794460",
         name: "Percy Jackson e o Ladrão de Raios",
