@@ -1,4 +1,4 @@
-import { DETAIL, STATEMENT, USER } from './types';
+import { STATEMENT, USER } from './types';
 import { bankUsers } from './data'
 import express, { Request, Response } from 'express'
 import { AddressInfo } from 'net'
@@ -17,21 +17,46 @@ const server = app.listen(process.env.PORT || 3003, () => {
     }
 })
 
+const formatCPF = (cpf: string, name?: string): string => {
 
+    const cpfFormatted = cpf.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+
+    if (cpfFormatted.length !== 14) {
+        return "CPF inválido."
+    }
+
+    if (name) {
+
+        if (bankUsers.findIndex((user) => user.detail.name.toUpperCase() === name.toUpperCase() && user.detail.cpf === cpfFormatted) === -1) {
+            return "Conta não encontrada."
+        }
+
+    }
+
+    if (bankUsers.findIndex(user => user.detail.cpf === cpfFormatted) === -1) {
+        return "CPF não encontrado."
+    }
+
+    return cpfFormatted
+}
+
+// GET getUsers - Pegar todos os usuários ou filtrar pelo cpf
 app.get('/users', (req: Request, res: Response) => {
     try {
 
         let cpf = req.query.cpf as string
 
+        //filtrar por cpf
         if (cpf) {
 
-            cpf = cpf.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+            //VERIFICAÇÕES
 
-            const index = bankUsers.findIndex(user => user.detail.cpf === cpf)
+            cpf = formatCPF(cpf)
 
-            if (cpf.length !== 14 || index === -1) {
-                throw new Error("Esse cpf é inválido.")
+            if (cpf === "CPF inválido." || cpf === "CPF não encontrado.") {
+                throw new Error(cpf)
             }
+            //------------------------------------------
 
             bankUsers.forEach((user) => {
                 if (user.detail.cpf === cpf) {
@@ -42,34 +67,43 @@ app.get('/users', (req: Request, res: Response) => {
             })
         }
 
+        // resposta caso não seja colocado nenhum filtro
         res.status(200).send({
             users: bankUsers
         })
 
     } catch (error: any) {
-        res.status(500).send(error.message)
+
+        switch (error.message) {
+            case "CPF inválido.":
+                res.statusCode = 422
+                break
+            case "CPF não encontrado.":
+                res.statusCode = 404
+                break
+            default: res.statusCode = 500
+        }
+
+        res.send(error.message)
     }
 })
 
+//GET getBankFundsUser - Pegar saldo
 app.get('/users/bankBalance', (req: Request, res: Response) => {
     try {
 
         let cpf = req.query.cpf as string
 
+        // VERIFICAÇÕES
+
         if (!cpf) {
             throw new Error("Parâmetros inválidos.")
         }
 
-        cpf = cpf.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+        cpf = formatCPF(cpf)
 
-        if (cpf.length !== 14) {
-            throw new Error("Parâmetros inválidos.")
-        }
-
-        const index = bankUsers.findIndex(user => user.detail.cpf === cpf)
-
-        if (index === -1) {
-            throw new Error("CPF não encontrado.")
+        if (cpf === "CPF inválido." || cpf === "CPF não encontrado.") {
+            throw new Error(cpf)
         }
 
         //--------------------------------
@@ -89,7 +123,7 @@ app.get('/users/bankBalance', (req: Request, res: Response) => {
     } catch (error: any) {
 
         switch (error.message) {
-            case "Parâmetros inválidos.":
+            case "CPF inválido.":
                 res.statusCode = 422
                 break
             case "CPF não encontrado.":
@@ -102,6 +136,7 @@ app.get('/users/bankBalance', (req: Request, res: Response) => {
     }
 })
 
+//POST createUser - Criar usuário
 app.post('/users', (req: Request, res: Response) => {
     try {
 
@@ -114,14 +149,14 @@ app.post('/users', (req: Request, res: Response) => {
             throw new Error("Parâmetro inválido.")
         }
 
-        if (cpf.length !== 14) {
-            throw new Error("CPF inválido.")
+        const cpfFormatted = formatCPF(cpf)
+
+        if (cpfFormatted === "CPF inválido.") {
+            throw new Error(cpfFormatted)
         }
 
-        const index = bankUsers.findIndex(user => user.detail.cpf === cpf)
-
-        if (index !== -1) {
-            throw new Error("Esse usuário já existe!")
+        if (cpfFormatted !== "CPF não encontrado.") {
+            throw new Error("Esse usuário já existe.")
         }
 
         const dataSplit = birthDate.split('/')
@@ -132,6 +167,7 @@ app.post('/users', (req: Request, res: Response) => {
         if (age < 18) {
             throw new Error("Não tem idade o suficiente para abrir uma conta.")
         }
+        //--------------------------------------
 
         const newUser: USER = {
             detail: {
@@ -154,7 +190,7 @@ app.post('/users', (req: Request, res: Response) => {
             case "Não tem idade o suficiente para abrir uma conta.":
                 res.statusCode = 422
                 break
-            case "Esse usuário já existe!":
+            case "Esse usuário já existe.":
                 res.statusCode = 409
                 break
             case "Parâmetro inválido.":
@@ -171,11 +207,11 @@ app.post('/users', (req: Request, res: Response) => {
     }
 })
 
+//POST paymentUser - Fazer pagamento
 app.post('/users/payment', (req: Request, res: Response) => {
     try {
 
-        let cpf = req.body.cpf
-        const { dueDate, description, value } = req.body
+        const { cpf, dueDate, description, value } = req.body
 
         if (dueDate) {
 
@@ -193,28 +229,25 @@ app.post('/users/payment', (req: Request, res: Response) => {
             }
         }
 
+        //VERIFICAÇÕES
+
         if (!value || !description || !cpf) {
             throw new Error("Parâmetro inválido.")
         }
+        const cpfFormatted = formatCPF(cpf)
 
-        cpf = cpf.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+        console.log(cpfFormatted)
+        if (cpfFormatted === "CPF inválido." || cpfFormatted === "CPF não encontrado.") {
+            throw new Error(cpfFormatted)
+        }
 
-        if (typeof (description) !== "string" || typeof (value) !== "number" || typeof (cpf) !== "string") {
+        if (typeof (description) !== "string" || typeof (value) !== "number") {
             throw new Error("Parâmetro inválido.")
         }
-
-        if (cpf.length !== 14) {
-            throw new Error("CPF inválido.")
-        }
-
-        const index = bankUsers.findIndex(user => user.detail.cpf === cpf)
-
-        if (index === -1) {
-            throw new Error("CPF não encontrado.")
-        }
+        //----------------------------------------------
 
         bankUsers.forEach((user) => {
-            if (user.detail.cpf === cpf) {
+            if (user.detail.cpf === cpfFormatted) {
 
                 if (user.bankBalance < value) {
                     throw new Error("Saldo insuficiente.")
@@ -262,54 +295,128 @@ app.post('/users/payment', (req: Request, res: Response) => {
     }
 })
 
-app.put('users/updateBalance/:cpf', (req: Request, res: Response) => {
+//POST transferMoney - Transferir de uma conta para outra
+app.post('/users/transfer', (req: Request, res: Response) => {
     try {
-        const cpf: string = req.params.cpf
+        const { nameUser, nameRecipient, cpfUser, cpfRecipient, value } = req.body
 
-        console.log(cpf)
-        // bankUsers.forEach((user) => {
-        //     if (user.detail.cpf === cpf) {
-        //         console.log("bateu")
-        //     }
-        // })
+        let result: {
+            name: string,
+            cpf: string,
+            bankStatement: STATEMENT[]
+        }[] = []
+
+        //VERIFICAÇÕES
+
+        let validUser = formatCPF(cpfUser, nameUser)
+        let validRecipient = formatCPF(cpfRecipient, nameRecipient)
+
+        if (validUser === "CPF inválido." || validUser === "Conta não encontrada.") {
+            throw new Error(validUser)
+        }
+
+        if (validRecipient === "CPF inválido." || validRecipient === "Conta não encontrada.") {
+            throw new Error(validRecipient)
+        }
+
+        if (typeof (nameUser) !== "string" || typeof (nameRecipient) !== "string" || typeof (value) !== "number" || typeof (cpfUser) !== "string" || typeof (cpfRecipient) !== "string" || value <= 0) {
+            throw new Error("Parâmetro inválido.")
+        }
+
+        //--------------------------------------------
+
+        bankUsers.forEach((user) => {
+            if (user.detail.cpf === cpfUser && user.detail.name.toUpperCase() === nameUser.toUpperCase()) {
+
+                //Se o saldo for menor que o saldo atual, exibir erro.
+
+                if (user.bankBalance - value < 0) {
+                    throw new Error("Saldo insuficiente.")
+                }
+
+                user.bankStatement.push({
+                    value: value,
+                    date: new Date().toLocaleString(),
+                    description: `Transferência para ${nameRecipient}`
+                })
+
+                result.push({
+                    name: user.detail.name,
+                    cpf: user.detail.cpf,
+                    bankStatement: user.bankStatement
+                })
+            }
+
+            if (user.detail.cpf === cpfRecipient && user.detail.name.toUpperCase() === nameRecipient.toUpperCase()) {
+
+                user.bankStatement.push({
+                    value: value,
+                    date: new Date().toLocaleString(),
+                    description: `Transferência de ${nameUser}`
+                })
+
+                result.push({
+                    name: user.detail.name,
+                    cpf: user.detail.cpf,
+                    bankStatement: user.bankStatement
+                })
+            }
+        })
+
+        res.status(200).send({ transition: result })
 
     } catch (error: any) {
+
+        switch (error.message) {
+            case "CPF inválido.":
+                res.statusCode = 422
+                break
+            case "Conta não encontrada.":
+                res.statusCode = 404
+                break
+            case "Saldo insuficiente.":
+                res.statusCode = 422
+                break
+            case "Parâmetro inválido.":
+                res.statusCode = 422
+                break
+            default: res.statusCode = 500
+        }
+
         res.send(error.message)
     }
 })
 
+//PUT addMoney - Depositar dinheiro na conta
 app.put('/users', (req: Request, res: Response) => {
     try {
-        const { name, value } = req.body
-        let cpf: string = req.body.cpf
+        const { name, cpf, value } = req.body
+
+        // VERIFICAÇÕES
 
         if (!name || !cpf || !value) {
             throw new Error("Parâmetro inválido.")
         }
 
-        cpf = cpf.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
-
-        if (typeof (value) !== "number" || typeof (name) !== "string" || typeof (cpf) !== "string") {
+        if (typeof (value) !== "number" || typeof (name) !== "string" || typeof (cpf) !== "string" || value <= 0) {
             throw new Error("Parâmetro inválido.")
         }
 
-        if (cpf.length !== 14) {
-            throw new Error("CPF inválido.")
+        const cpfFormatted = formatCPF(cpf, name)
+
+        if (cpfFormatted === "CPF inválido." || cpfFormatted === "Conta não encontrada.") {
+            throw new Error(cpfFormatted)
         }
 
-        const index = bankUsers.findIndex(user => user.detail.cpf === cpf && user.detail.name.toUpperCase() === name.toUpperCase())
-
-        if (index === -1) {
-            throw new Error("CPF ou name não encontrado.")
-        }
+        //--------------------------------------------
 
         bankUsers.forEach((user) => {
-            if (user.detail.cpf === cpf) {
+            if (user.detail.cpf === cpfFormatted) {
                 user.bankBalance += value
 
                 user.bankStatement.push({
                     value: value,
-                    date: new Date().toLocaleDateString('pt-br') + " " + new Date().toLocaleTimeString(),
+                    date: new Date().toLocaleString(),
                     description: "Depósito de dinheiro"
                 })
 
@@ -328,7 +435,7 @@ app.put('/users', (req: Request, res: Response) => {
             case "CPF inválido.":
                 res.statusCode = 422
                 break
-            case "CPF ou name não encontrado.":
+            case "Conta não encontrada.":
                 res.statusCode = 404
                 break
             default: res.statusCode = 500
@@ -338,12 +445,68 @@ app.put('/users', (req: Request, res: Response) => {
     }
 })
 
-// const today = (new Date())
-// var data = new Date().toLocaleString().substr(0, 10)
+//PUT updateFundsUser - Atualizar o saldo da conta 
+app.put('/users/updateBalance/:cpf', (req: Request, res: Response) => { //*
+    try {
+        let cpf = req.params.cpf
 
-// console.log(data)
+        //VERIFICAÇÕES
 
-// var data = new Date().toLocaleString()
+        cpf = formatCPF(cpf)
 
-// console.log(data)
+        if (cpf === "CPF inválido." || cpf === "CPF não encontrado.") {
+            throw new Error(cpf)
+        }
+        //---------------------------------------------------
 
+        bankUsers.forEach((user) => {
+            if (user.detail.cpf === cpf) {
+
+                user.bankBalance = 0
+                user.bankStatement.forEach((transition) => {
+
+                    //data de hoje em timestamp
+                    let now: number | string[] = new Date().toLocaleString().slice(0, 10).split("/")
+                    now = new Date(+now[2], +now[1] - 1, +now[0]).getTime()
+
+                    //data de vencimento em timestamp
+
+                    let date: number | string[] = transition.date.slice(0, 10).split('/')
+                    date = new Date(+date[2], +date[1] - 1, +date[0]).getTime()
+
+                    if (date < now) {
+                        console.log(transition.value)
+
+                        if (transition.description === "Depósito de dinheiro" || transition.description.includes("Transferência de")) {
+                            user.bankBalance += transition.value
+                        } else {
+                            user.bankBalance -= transition.value
+                        }
+                        console.log("saldo total:", user.bankBalance)
+                    }
+
+                })
+
+                res.status(200).send({
+                    user: user
+                })
+            }
+        })
+
+
+    } catch (error: any) {
+
+        switch (error.message) {
+            case "CPF inválido.":
+                res.statusCode = 422
+                break
+            case "CPF não encontrado.":
+                res.statusCode = 404
+                break
+            default: res.statusCode = 500
+        }
+
+        res.send(error.message)
+    }
+
+})
