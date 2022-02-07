@@ -305,7 +305,7 @@ app.post("/task", async (req: Request, res: Response) => {
         }
 
         if (validateDate(limitDate) === false) {
-            throw new Error("Parâmetro inválido.")
+            throw new Error("'limitDate' não está no formato exigido." )
         }
 
         //-------------------------------------------------
