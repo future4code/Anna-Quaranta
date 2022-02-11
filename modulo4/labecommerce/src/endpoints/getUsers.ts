@@ -4,28 +4,21 @@ import { selectAllUsers } from './../services/selectAllUsers';
 import { ERROR } from './../enum';
 import { Request, Response } from "express"
 
-const addPurchases = async (users: User[]) => {
-    users.forEach(async (user: any) => {
-        user.purchase = await selectPurchasesUser(user.id);
-    })
+export const addPurchase = async (users: any): Promise<any> => {
+    for (let i = 0; i < users.length; i++) {
+        users[i].purchases = await selectPurchasesUser(users[i].id)
+    }
+    return users
 }
 
 export const getUsers = async (req: Request, res: Response) => {
     try {
-        const users = await selectAllUsers()
+        const users = await selectAllUsers().then(addPurchase)
 
-        if (!users.length) {
-            throw new Error("Nenhum usuário encontrado.")
-        }
-
-        await addPurchases(users)
-
-        res.status(200).send({
-            users: users
-        })
+        res.status(200).send(users)
 
     } catch (error: any) {
         res.statusCode = +ERROR[error.message] || 500
-        res.send(error.message)
+        res.send(error.message || "Erro inesperado")
     }
 }

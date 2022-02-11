@@ -4,10 +4,12 @@ import { Product, Purchase } from './../types';
 import { selectAllProducts } from './../services/selectAllProducts';
 import { Request, Response } from "express"
 
-const filterProduct = async (id: string) => {
-    return (await selectAllProducts()).filter((product: Product) => {
+const filterProduct = async (id: string): Promise<Product> => {
+    const product = (await selectAllProducts("asc", "%")).filter((product: Product) => {
         return product.id === id
     })
+
+    return product[0]
 }
 
 export const createPurchase = async (req: Request, res: Response) => {
@@ -24,11 +26,11 @@ export const createPurchase = async (req: Request, res: Response) => {
 
         const product = await filterProduct(productId)
 
-        if (!product.length) {
+        if (!product) {
             throw new Error("Nenhum produto encontrado.")
         }
 
-        await sendPurchase(userId, productId, quantity, product[0].price)
+        await sendPurchase(userId, productId, quantity, product.price)
 
         res.status(201).send("Compra registrada.")
 

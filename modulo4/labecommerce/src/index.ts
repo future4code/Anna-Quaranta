@@ -1,6 +1,5 @@
 import { getPurchasesUser } from './endpoints/getPurchasesUser';
 import { createPurchase } from './endpoints/createPurchase';
-import { selectAllUsers } from './services/selectAllUsers';
 import { getProducts } from './endpoints/getProducts';
 import { createProduct } from './endpoints/createProduct';
 import { getUsers } from './endpoints/getUsers';
