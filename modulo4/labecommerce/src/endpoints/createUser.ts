@@ -1,3 +1,4 @@
+import { selectAllUsers } from './../services/selectAllUsers';
 import { ERROR } from './../enum';
 import { User } from './../types';
 import { sendUser } from './../services/sendUser';
@@ -7,6 +8,14 @@ const validateEmail = (email: string): boolean => {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
 };
+
+const verificateUser = async (email: string): Promise<User[]> => {
+    const user = (await selectAllUsers()).filter((user: User) => {
+        return user.email === email
+    })
+
+    return user
+}
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -21,6 +30,11 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         if (typeof (name) !== "string" || typeof (email) !== "string" || typeof (password) !== "string") {
             throw new Error("Parâmetro inválido.")
+        }
+
+        const userVerificate = await verificateUser(email)
+        if (userVerificate.length > 0) {
+            throw new Error("Esse email já está sendo utilizado.")
         }
 
         if (validateEmail(email) === false) {

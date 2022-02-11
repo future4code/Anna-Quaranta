@@ -19,5 +19,3 @@ app.get("/products", getProducts)
 // endpoint de compra
 app.post("/purchases", createPurchase)
 app.get("/users/:user_id/purchases", getPurchasesUser)
-
-

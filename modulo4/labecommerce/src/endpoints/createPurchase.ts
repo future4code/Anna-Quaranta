@@ -1,6 +1,7 @@
+import { selectAllUsers } from './../services/selectAllUsers';
 import { sendPurchase } from './../services/sendPurchase';
 import { ERROR } from './../enum';
-import { Product, Purchase } from './../types';
+import { Product, User } from './../types';
 import { selectAllProducts } from './../services/selectAllProducts';
 import { Request, Response } from "express"
 
@@ -10,6 +11,14 @@ const filterProduct = async (id: string): Promise<Product> => {
     })
 
     return product[0]
+}
+
+const filterUser = async (id: string): Promise<User> => {
+    const user = (await selectAllUsers()).filter((user: User) => {
+        return user.id === id
+    })
+
+    return user[0]
 }
 
 export const createPurchase = async (req: Request, res: Response) => {
@@ -24,8 +33,14 @@ export const createPurchase = async (req: Request, res: Response) => {
             throw new Error("Parâmetro inválido.")
         }
 
+        const user = await filterUser(userId)
+
         const product = await filterProduct(productId)
 
+        if (!user) {
+            throw new Error("Usuário não encontrado.")
+        }
+        
         if (!product) {
             throw new Error("Nenhum produto encontrado.")
         }

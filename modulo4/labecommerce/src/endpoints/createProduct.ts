@@ -3,7 +3,6 @@ import { sendProduct } from './../services/sendProduct';
 import { Request, Response } from 'express';
 import { ERROR } from './../enum';
 
-
 export const createProduct = async (req: Request, res: Response) => {
     try {
         const { name, price, imageUrl } = req.body
@@ -15,6 +14,10 @@ export const createProduct = async (req: Request, res: Response) => {
         }
 
         if (typeof (name) !== "string" || typeof (price) !== "number" || typeof (imageUrl) !== "string") {
+            throw new Error("Parâmetro inválido.")
+        }
+
+        if (price <= 0) {
             throw new Error("Parâmetro inválido.")
         }
 
