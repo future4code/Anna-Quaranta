@@ -31,38 +31,44 @@ export class User extends BaseDataBase {
         }
     }
 
-    public static async unfollowUser(id_userFollowing: string, id_userFollowed: string): Promise<void> {
+    public static async unfollowUser(id_userFollowing: string, id_userFollowed: string, deleteUser?: string) {
         try {
-            await User.connection("cookenu_followers")
+            //caso seja para deletar o usuário
+            if (deleteUser) {
+                return await User.connection("cookenu_followers")
+                    .delete()
+                    .where({ id_userFollowing })
+                    .orWhere({ id_userFollowed })
+            }
+
+            return await User.connection("cookenu_followers")
                 .delete()
                 .where({ id_userFollowing })
                 .andWhere({ id_userFollowed })
-                .orWhere({ id_userFollowed })
         } catch (error: any) {
             throw new Error(error.sql || error.message)
         }
     }
 
-    public static async deleteUser(id: string): Promise<void> {
+    public static async deleteUser(id: string) {
         try {
-            await User.connection("cookenu_users")
+            return await User.connection("cookenu_users")
                 .delete()
                 .where({ id })
 
         } catch (error: any) {
-            throw new Error(error || error.message)
+            throw new Error(error.sql || error.message)
         }
     }
 
-    // public static async deleteFollowed(id: string) {
-    //     try {
-    //         await User.connection("cookenu_followers")
-    //             .where("id_userFollowing", id)
-    //             .andWhere("id_userFollowed", id)
-    //             .delete()
+    public static async updateUser(id: string, password: string) {
+        try {
+            await User.connection("cookenu_users")
+                .insert({ password })
+                .where({ id })
 
-    //     } catch (error: any) {
-    //         throw new Error(error || error.message)
-    //     }
-    // }
+        } catch (error: any) {
+            throw new Error(error.sql || error.message)
+        }
+    }
 }

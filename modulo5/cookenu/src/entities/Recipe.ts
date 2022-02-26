@@ -66,7 +66,7 @@ export class Recipes extends BaseDataBase {
 
     public static async deleteRecipe(id: string, id_user: string): Promise<void> {
         try {
-            await Recipes.connection("cookenu_recipes")
+            return await Recipes.connection("cookenu_recipes")
                 .where({ id })
                 .orWhere({ id_user })
                 .delete()

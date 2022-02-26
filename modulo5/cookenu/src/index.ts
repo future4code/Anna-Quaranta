@@ -1,3 +1,4 @@
+import { forgetPassword } from './endpoints/forgetPassword';
 import { feedRecipes } from './endpoints/feedRecipes';
 import { unfollowUser } from './endpoints/unfollowUser';
 import { followUser } from './endpoints/followUser';
@@ -21,6 +22,7 @@ app.get("/user/:id", getOtherProfile)
 app.post("/user/follow", followUser)
 app.delete("/user/unfollow", unfollowUser)
 app.delete("/user/:id", deleteUser)
+app.put("user/password", forgetPassword)
 
 //RECIPES
 app.post("/recipe", createRecipe)
