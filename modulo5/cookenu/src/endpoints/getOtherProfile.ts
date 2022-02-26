@@ -4,23 +4,28 @@ import { TokenGenerator } from "../uteis/TokenGenerator"
 
 export const getOtherProfile = async (req: Request, res: Response) => {
     try {
-        const id = req.params.id
         const token = req.headers.authorization
+        const id = req.params.id // id do usuário de busca
 
+        //VERIFICAÇÕES
         if (!token) {
             res.status(401)
             throw new Error("Token de autorização ausente ou usuário não autorizado.")
         }
 
-        new TokenGenerator().verifyToken(token)
+        //checa se o token é válido
+        TokenGenerator.verifyToken(token)
 
-        const user = await new User().getUser(id, "%")
+        //pega o perfil do usuário
+        const user = await User.getUser(id, "%")
 
-        if (user[0] === undefined) {
+        //se não houver joga um erro
+        if (!user.length) {
             res.status(404)
             throw new Error("Usuário não encontrado.")
         }
 
+        //sucesso
         res.status(200).send({
             id: id,
             name: user[0].name,

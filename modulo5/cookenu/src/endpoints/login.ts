@@ -14,30 +14,32 @@ export const login = async (req: Request, res: Response) => {
         }
 
         //verifica se o email existe
-        const user = await new User(email, password).getUser("%", email)
+        const user = await User.getUser("%", email)
 
-        //se não existe dá erro
-        if (user[0] === undefined) {
+        //se não existe joga um erro
+        if (!user.length) {
             res.status(422)
             throw new Error("Email ou senha incorreta.")
         }
 
-        //se existe checa se a senha é compatível
-        const checkPassword = await new HashManager().compare(password, user[0].password)
+        //se existe, checa se a senha é compatível
+        const checkPassword = await HashManager.compare(password, user[0].password)
 
-        //se não for retorna erro
+        //se não for, joga erro
         if (checkPassword === false) {
             res.status(422)
             throw new Error("Email ou senha incorreta.")
         }
 
         //se for, gera um token de acesso
-        const token = new TokenGenerator().generate({
+        const token = TokenGenerator.generate({
             id: user[0].id,
             name: user[0].name,
-            email: email
+            email: email,
+            role: user[0].role
         })
 
+        //sucesso
         res.status(200).send({
             message: "Usuário logado.",
             token

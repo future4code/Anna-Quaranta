@@ -1,4 +1,4 @@
-import { BaseDataBase } from './../data/BaseDataBase';
+import { ROLE_USER } from './../interfaces e enums/Role_User.enum';
 import { User } from "./User";
 
 export class SignUp extends User {
@@ -6,19 +6,21 @@ export class SignUp extends User {
         protected id: string,
         protected name: string,
         email: string,
-        password: string
+        password: string,
+        protected role: ROLE_USER
     ) {
         super(email, password)
     }
 
     public async createUser() {
         try {
-            await BaseDataBase.connection("cookenu_users")
+            await SignUp.connection("cookenu_users")
                 .insert({
                     id: this.id,
                     name: this.name,
                     email: this.email,
-                    password: this.password
+                    password: this.password,
+                    role: this.role
                 })
 
         } catch (error: any) {

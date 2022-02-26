@@ -7,12 +7,13 @@ dotenv.config()
 export interface Authenticator {
     id: string,
     name: string,
-    email: string
+    email: string,
+    role: string
 }
 
 
 export class TokenGenerator {
-    public generate(input: Authenticator) {
+    public static generate(input: Authenticator) {
         const token = jwt.sign(input, process.env.JWT_KEY as string,
             {
                 expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN as string
@@ -22,7 +23,7 @@ export class TokenGenerator {
         return token
     }
 
-    public verifyToken(token: string) {
+    public static verifyToken(token: string) {
         const data = jwt.verify(token, process.env.JWT_KEY as string)
 
         return data as Authenticator
