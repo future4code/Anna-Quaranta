@@ -22,7 +22,7 @@ app.get("/user/:id", getOtherProfile)
 app.post("/user/follow", followUser)
 app.delete("/user/unfollow", unfollowUser)
 app.delete("/user/:id", deleteUser)
-app.put("user/password", forgetPassword)
+app.put("/user/password", forgetPassword)
 
 //RECIPES
 app.post("/recipe", createRecipe)

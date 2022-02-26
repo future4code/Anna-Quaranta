@@ -61,10 +61,10 @@ export class User extends BaseDataBase {
         }
     }
 
-    public static async updateUser(id: string, password: string) {
+    public static async updatePassword(password: string, id: string) {
         try {
             await User.connection("cookenu_users")
-                .insert({ password })
+                .update({ password })
                 .where({ id })
 
         } catch (error: any) {
