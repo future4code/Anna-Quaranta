@@ -11,7 +11,17 @@ export type User = {
     password: string
 }
 
-export type Login = {
+export type DTOInputLogin = {
     email: string,
     password: string
+}
+
+export type DTOInputFriendship = {
+    token: string | undefined,
+    id_user: string
+}
+export type Friendship = {
+    id: string,
+    id_user1: string,
+    id_user2: string
 }
