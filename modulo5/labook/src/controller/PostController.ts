@@ -1,8 +1,7 @@
-import { DTOInputPost } from './../model/Post';
+import { DTOInputPost, Post } from './../model/Post';
 import PostBusiness from "../business/PostBusiness";
 import PostData from "../data/PostData";
 import { Request, Response } from 'express';
-import UserData from '../data/UserData';
 
 export default class PostController {
     private postBusiness: PostBusiness
@@ -28,6 +27,7 @@ export default class PostController {
                 post
             })
         } catch (error: any) {
+            res.status(500)
             res.send(error.message)
         }
     }
@@ -42,6 +42,38 @@ export default class PostController {
             res.status(200).send(post)
 
         } catch (error: any) {
+            res.status(500)
+            res.send(error.message)
+        }
+    }
+
+    getFeed = async (req: Request, res: Response) => {
+        const token = req.headers.authorization
+
+        try {
+            const feed: Post[] = await this.postBusiness.getFeed(token)
+
+            res.status(200).send({
+                feed: feed.length ? feed : "Seu feed está vazio. Faça amizades para ver postagens."
+            })
+
+        } catch (error: any) {
+            res.status(500)
+            res.send(error)
+        }
+    }
+
+    searchFeed = async (req: Request, res: Response) => {
+        const token = req.headers.authorization
+        const type = req.query.type as string || "NORMAL"
+
+        try {
+            const feed = await this.postBusiness.searchFeed(token, type)
+
+            res.status(200).send(feed)
+
+        } catch (error: any) {
+            res.status(500)
             res.send(error.message)
         }
     }

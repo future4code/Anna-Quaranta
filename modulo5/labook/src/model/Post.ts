@@ -2,7 +2,7 @@ export type Post = {
     id: string,
     photo: string,
     description: string,
-    creationDate: Date,
+    creationDate: number | string,
     type: "NORMAL" | "EVENTO",
     id_user: string
 }

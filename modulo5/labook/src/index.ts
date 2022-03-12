@@ -1,4 +1,4 @@
-import { postRouter } from './routes/tokenRouter';
+import { postRouter } from './routes/postRouter';
 import { userRouter } from './routes/userRouter';
 import express from "express";
 import cors from "cors";

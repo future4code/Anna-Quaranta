@@ -1,4 +1,3 @@
-import { UserRepository } from './Repository/UserRepository';
 import { TokenGenerator } from './../services/TokenGenerator';
 import { DTOInputPost, Post } from './../model/Post';
 import { IdGenerator } from './../services/IdGenerator';
@@ -7,13 +6,13 @@ export default class PostBusiness {
 
     private postData: PostRepository
     private IdGenerator: string
-    private creationDate: Date
+    private creationDate: number
 
     constructor(implementationPostData: PostRepository) {
 
         this.postData = implementationPostData
         this.IdGenerator = IdGenerator.generate()
-        this.creationDate = new Date()
+        this.creationDate = Date.now()
 
     }
 
@@ -64,10 +63,59 @@ export default class PostBusiness {
 
             const [post]: Post[] = await this.postData.findPostById(id)
 
+            if (!post) {
+                throw new Error("Postagem não encontrada.")
+            }
+
+            post.creationDate = new Date(post.creationDate).toLocaleString()
+
             return post
 
         } catch (error: any) {
             throw new Error(error.message)
         }
+    }
+
+    getFeed = async (token: string | undefined) => {
+
+        if (!token) {
+            throw new Error("Token inexistente ou inválido.")
+        }
+
+        const checkToken = TokenGenerator.verifyToken(token)
+
+        if (!checkToken) {
+            throw new Error("Token inexistente ou inválido.")
+        }
+
+        const feed = await this.postData.getFeed(checkToken.id)
+
+        feed.forEach((post) => {
+            post.creationDate = new Date(post.creationDate).toLocaleString()
+        })
+
+        return feed
+    }
+
+    searchFeed = async (token: string | undefined, type: string) => {
+
+        if (!token || !type) {
+            throw new Error("Verifique se o header 'authorization' e o query 'type' foram enviados.")
+        }
+
+        const checkToken = TokenGenerator.verifyToken(token)
+
+        if (!checkToken) {
+            throw new Error("Token inexistente ou inválido.")
+        }
+
+        const feed: Post[] = await this.postData.searchFeed(type)
+
+        feed.forEach((post) => {
+            post.creationDate = new Date(post.creationDate).toLocaleString()
+        })
+
+        return feed
+
     }
 }

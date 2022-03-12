@@ -4,14 +4,11 @@ import BaseDataBase from './BaseDataBase';
 
 export default class UserData extends BaseDataBase implements UserRepository {
 
-    protected TABLE_USER_NAME = "labook_users"
-
-    protected TABLE_NAME_FRIENDSHIP = "labook_friendship"
 
     createUser = async (user: User): Promise<void> => {
         try {
             await UserData
-                .connection(this.TABLE_USER_NAME)
+                .connection("labook_users")
                 .insert(user)
         } catch (error: any) {
             throw new Error(error)
@@ -21,7 +18,7 @@ export default class UserData extends BaseDataBase implements UserRepository {
     findBy = async (email: string, id: string): Promise<User[]> => {
         try {
             const users: User[] = await UserData
-                .connection(this.TABLE_USER_NAME)
+                .connection("labook_users")
                 .where("email", "LIKE", email)
                 .andWhere("id", "LIKE", id)
 
@@ -33,12 +30,12 @@ export default class UserData extends BaseDataBase implements UserRepository {
     }
 
     createFriendship = async (friendship: Friendship): Promise<void> => {
-        await UserData.connection(this.TABLE_NAME_FRIENDSHIP)
+        await UserData.connection("labook_friendship")
             .insert(friendship)
     }
 
     findFriendship = async (id_user1: string, id_user2: string): Promise<Friendship[]> => {
-        const friendships: Friendship[] = await UserData.connection(this.TABLE_NAME_FRIENDSHIP)
+        const friendships: Friendship[] = await UserData.connection("labook_friendship")
             .where({ id_user1 })
             .andWhere({ id_user2 })
 
@@ -47,7 +44,7 @@ export default class UserData extends BaseDataBase implements UserRepository {
 
     deleteFriendship = async (id_user1: string, id_user2: string): Promise<void> => {
 
-        await UserData.connection(this.TABLE_NAME_FRIENDSHIP)
+        await UserData.connection("labook_friendship")
             .where({ id_user1 })
             .andWhere({ id_user2 })
             .del()
